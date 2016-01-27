@@ -6,38 +6,38 @@ require 'dbinfo.php';
 <?php
 if(isset($_POST["submit"]))
 {
-	$username=trim($_POST["username"]);
-	$password=trim($_POST["password"]);
-	if($username=="")
+	$username = trim($_POST["username"]);
+	$password = trim($_POST["password"]);
+	if($username == "")
 	{
-		$_SESSION['blank_user']="Username can't be blank";
+		$_SESSION['blank_user'] = "Username can't be blank";
 	}
-	if($password=="")
+	if($password == "")
 	{
-		$_SESSION['blank_pass']="Password can't be blank";
+		$_SESSION['blank_pass'] = "Password can't be blank";
 	}
 	else
 	{
-		$password=md5($password);
-		$query1="SELECT id FROM reg where user_name='$username' AND password='$password' And activation='1'";
-		$result=mysqli_query($connection, $query1);
-		if($result && $rows=mysqli_fetch_assoc($result)) 
+		$password = md5($password);
+		$query1 = "SELECT id FROM reg where user_name='$username' AND password='$password' And activation='1'";
+		$result = mysqli_query($connection, $query1);
+		if($result && $rows = mysqli_fetch_assoc($result)) 
 		{
-			$_SESSION["id"]=$rows["id"];
-			$_SESSION["username"]=$username;
+			$_SESSION["id"] = $rows["id"];
+			$_SESSION["username"] = $username;
 			header("Location: detail.php");
 			}
 		else 
 		{
 			$query2="SELECT id FROM reg where user_name='$username' AND password='$password'";
 		    $resul1=mysqli_query($connection, $query2);
-		    if(!$result1 && !$rows1=mysqli_fetch_assoc($result1)) 
+		    if(!$result1 && !$rows1 = mysqli_fetch_assoc($result1)) 
 			{
-				$_SESSION['wrong']="Not activated";
+				$_SESSION['wrong'] = "Not activated";
 			}
 			else
 			{
-				$_SESSION['wrong']="Wrong username and password";
+				$_SESSION['wrong'] = "Wrong username and password";
 			}
 		}
 	}

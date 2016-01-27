@@ -1,90 +1,89 @@
 <?php
-	//session_start();
 require 'header.php';
 require 'dbinfo.php';
-session_start();
 require 'validate.php';
+session_start();
 ?>
 <?php
-$errors=array();
+$errors = array();
 if(isset($_POST["update"]))
 {
-	$id=$_SESSION['id'];
-	$username=trim($_POST["username"]);
-	$email=trim($_POST["email"]);
-	$dob=trim($_POST["dob"]);
-	$first_name=trim($_POST["first_name"]);
-	$last_name=trim($_POST["last_name"]);
-	$middle_name=trim($_POST["middle_name"]);
-	$pno=trim($_POST["pno"]);
-	$employer=trim($_POST["employer"]);
-	$employement=trim($_POST["employement"]);
-	$dob=trim($_POST["dob"]);
-	$street=trim($_POST["street"]);
-	$city=trim($_POST["city"]);
-	$state=trim($_POST["state"]);
-	$zip=trim($_POST["zip"]);
-	$fax=trim($_POST["fax"]);
-	$street1=trim($_POST["street1"]);
-	$city1=trim($_POST["city1"]);
-	$state1=trim($_POST["state1"]);
-	$zip1=trim($_POST["zip1"]);
-	$fax1=trim($_POST["fax1"]);
-	$comment=addslashes(trim($_POST["text1"]));
+	$id = $_SESSION['id'];
+	$username = trim($_POST["username"]);
+	$email = trim($_POST["email"]);
+	$dob = trim($_POST["dob"]);
+	$first_name = trim($_POST["first_name"]);
+	$last_name = trim($_POST["last_name"]);
+	$middle_name = trim($_POST["middle_name"]);
+	$pno = trim($_POST["pno"]);
+	$employer = trim($_POST["employer"]);
+	$employement = trim($_POST["employement"]);
+	$dob = trim($_POST["dob"]);
+	$street = trim($_POST["street"]);
+	$city = trim($_POST["city"]);
+	$state = trim($_POST["state"]);
+	$zip = trim($_POST["zip"]);
+	$fax = trim($_POST["fax"]);
+	$street1 = trim($_POST["street1"]);
+	$city1 = trim($_POST["city1"]);
+	$state1 = trim($_POST["state1"]);
+	$zip1 = trim($_POST["zip1"]);
+	$fax1 = trim($_POST["fax1"]);
+	$comment = addslashes(trim($_POST["text1"]));
 	//POST values
-	if($_FILES["img"]["name"]=="")
+	if($_FILES["img"]["name"] == "")
 	{
-		$query2="SELECT img FROM reg WHERE id='$_SESSION[id]'";
-		$result1=mysqli_query($connection, $query2);
-		$rows1=mysqli_fetch_assoc($result1);
+		$query2 = "SELECT img FROM reg WHERE id='$_SESSION[id]'";
+		$result1 = mysqli_query($connection, $query2);
+		$rows1 = mysqli_fetch_assoc($result1);
 		if($result1 && $rows1)
 		{
-			$img_var=trim($rows1['img']);	
+			$img_var = trim($rows1['img']);	
     	}	//Old Imag
      }
     else
      {
     	$target_dir = "/var/www/html/new/img/$img";
 		$target_file = $target_dir . basename($_FILES["img"]["name"]);
-		$img_var=basename($_FILES["img"]["name"]);
+		$img_var = basename($_FILES["img"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 		&& $imageFileType != "gif" ) 
 		{
-    		$errors["img"]="Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    		$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     		$uploadOk = 0;
 		}
-		if($uploadok==1)
+		if($uploadok == 1)
 		{
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 		}
-		if($_FILES["img"]["name"]=="")
+		if($_FILES["img"]["name"] == "")
 		{
 			$query2="SELECT img FROM reg WHERE id='$_SESSION[id]'";
 			$result1=mysqli_query($connection, $query2);
 			$rows1=mysqli_fetch_assoc($result1);
 			if($result1 && $rows1)
 			{
-				$img_var=trim($rows1['img']);	
+				$img_var = trim($rows1['img']);	
     		}//Old Image
     	}// Updated Image Upload
 	}
-	$name_regular=array("first_name","last_name","middle_name");
+	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);
-	$name_fields_presence=array("username","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","zip1","fax1","dob");
+	$name_fields_presence = array("username","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","zip1","fax1","dob");
 	all_prestnt($name_fields_presence);
 			//values are present or not
-	$fields_max_length=array("username"=>20,"first_name"=>20,"last_name"=>20,"pno"=>15);
+	$fields_max_length = array("username" => 20,"first_name" => 20,"last_name" => 20,"pno" => 15);
 	validate_max_lengths($fields_max_length);
 			//max length check
-	$fields_min_length=array("username"=>8,"email"=>8,"pno"=>9);	
+	$fields_min_length = array("username" => 8,"email" => 8,"pno" => 9);	
 	validate_min_lengths($fields_min_length);
 	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email))
 	{
-		$errors["email"]=" wrong" . ucfirst("email") .  " pattern ";
+		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
 	}//email format checking//for email varification;
-	$output=form_errors($errors);
+	$output = form_errors($errors);
    //end of validations
 	if(!$output)
 	{
@@ -119,7 +118,7 @@ if(isset($_POST["update"]))
 		} 
 		else 
 		{
-			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
+			?><div class = "colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
 	}	//for $output
 }//for submit
@@ -137,17 +136,6 @@ if(isset($_POST["update"]))
 		{
 			header("Location: login.php");
 		}
-		/*function display($rows,$result) 
-		{
-			if(isset($_POST['update']))
-			{ 
-				return $_POST[$rows];
-			} 
-			else
-			{
-				return $result[$field];   
-			}
-		}*/
 		?>
 		<div class="col-lg-12 h1 well">
 			<center> Update </center>

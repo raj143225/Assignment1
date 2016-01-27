@@ -7,9 +7,9 @@ session_start();
 <?php	
 if(isset($_POST['send']))
 {
-	$email=trim($_POST['email']);
-	$password=md5(trim($_POST["password"]));
-	if((isset($_POST['email']) && $_POST['email']!=="") && (isset($_POST['password']) && $_POST['password']!==""))
+	$email = trim($_POST['email']);
+	$password = md5(trim($_POST["password"]));
+	if((isset($_POST['email']) && $_POST['email'] !== "") && (isset($_POST['password']) && $_POST['password'] !== ""))
 	{
 		$activate=md5(uniqid(rand(), true));
 		$q1="SELECT IF(EXISTS(SELECT id FROM reg WHERE email_id='$email'),1,0)";
@@ -23,27 +23,25 @@ if(isset($_POST['send']))
 			if($result)
 			{
 				mymail1($email,"click on the below link to login",$activate);
-				$_SESSION['re_act']="Check your mail for Re-activation";
+				$_SESSION['re_act'] = "Check your mail for Re-activation";
 			}
 			else
 			{
-				$_SESSION['wrong_email']="Somthing Wrong"; 
+				$_SESSION['wrong_email'] = "Somthing Wrong"; 
 			}
 		}
 	}
 	else
 	{
-		if($email=="")
+		if($email == "")
 		{
-			$_SESSION['blank_email']="email can't be blank";
+			$_SESSION['blank_email'] = "email can't be blank";
 		}
-		if($_POST["password"]=="")
+		if($_POST["password"] == "")
 		{
-			$_SESSION['blank_passs']="Password can't be blank";
+			$_SESSION['blank_passs'] = "Password can't be blank";
 			
-		}
-	
-		//$_SESSION['no_act']="Please Enter values "; 
+		} 
 	}
 }
 ?>

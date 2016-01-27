@@ -10,33 +10,33 @@ if($_SESSION['id'])
 	$id=$_SESSION['id'];
 	$query1="SELECT * FROM reg WHERE id='$id'";
 	$result=mysqli_query($connection, $query1);
-	if ($result && $rows=mysqli_fetch_assoc($result)) 
+	if ($result && $rows = mysqli_fetch_assoc($result)) 
 	{
-		$first_name=trim($rows["first_name"]);
-		$last_name=trim($rows["last_name"]);
-		$middle_name=trim($rows["middle_name"]);
-		$pno=trim($rows["ph_no"]);
-		$gender=trim($rows["gender"]);
-		$marital=trim($rows["marital"]);
-		$employer=trim($rows["employer"]);
-		$employement=trim($rows["employement"]);
-		$dob=trim($rows["dob"]);
-		$marital=trim($rows["marital"]);
-		$street=trim($rows["street"]);
-		$city=trim($rows["city"]);
-		$state=trim($rows["state"]);
-		$zip=trim($rows["zip"]);
-		$fax=trim($rows["fax"]);
-		$street1=trim($rows["street1"]);
-		$city1=trim($rows["city1"]);
-		$state1=trim($rows["state1"]);
-		$zip1=trim($rows["zip1"]);
-		$img=trim($rows['img1']);
-		$fax1=trim($rows["fax1"]);
-		$comment=addslashes(trim($rows["comment"]));
-		$username=trim($rows['user_name']);
-		$email=trim($rows['email_id']);
-		$img=trim($rows["img"]);   			     
+		$first_name = trim($rows["first_name"]);
+		$last_name = trim($rows["last_name"]);
+		$middle_name = trim($rows["middle_name"]);
+		$pno = trim($rows["ph_no"]);
+		$gender = trim($rows["gender"]);
+		$marital = trim($rows["marital"]);
+		$employer = trim($rows["employer"]);
+		$employement = trim($rows["employement"]);
+		$dob = trim($rows["dob"]);
+		$marital = trim($rows["marital"]);
+		$street = trim($rows["street"]);
+		$city = trim($rows["city"]);
+		$state = trim($rows["state"]);
+		$zip = trim($rows["zip"]);
+		$fax = trim($rows["fax"]);
+		$street1 = trim($rows["street1"]);
+		$city1 = trim($rows["city1"]);
+		$state1 = trim($rows["state1"]);
+		$zip1 = trim($rows["zip1"]);
+		$img = trim($rows['img1']);
+		$fax1 = trim($rows["fax1"]);
+		$comment = addslashes(trim($rows["comment"]));
+		$username = trim($rows['user_name']);
+		$email = trim($rows['email_id']);
+		$img = trim($rows["img"]);   			     
 	} 
 	else 
 	{
