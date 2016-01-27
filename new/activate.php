@@ -1,5 +1,5 @@
 <?php
-require 'header1.php';
+require 'header.php';
 require 'dbinfo.php';
 session_start();
 ?>
