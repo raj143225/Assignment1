@@ -10,11 +10,11 @@ if(isset($_POST["submit"]))
 	$password = trim($_POST["password"]);
 	if($username == "")
 	{
-		$_SESSION['blank_user'] = "Username can't be blank";
+		$_SESSION['blank_user'] = "Username can't be blank";//if empty username
 	}
 	if($password == "")
 	{
-		$_SESSION['blank_pass'] = "Password can't be blank";
+		$_SESSION['blank_pass'] = "Password can't be blank";//if empty password
 	}
 	else
 	{
@@ -33,11 +33,11 @@ if(isset($_POST["submit"]))
 		    $resul1=mysqli_query($connection, $query2);
 		    if(!$result1 && !$rows1 = mysqli_fetch_assoc($result1)) 
 			{
-				$_SESSION['wrong'] = "Not activated";
+				$_SESSION['wrong'] = "Not activated";//If not activated because of some issue
 			}
 			else
 			{
-				$_SESSION['wrong'] = "Wrong username and password";
+				$_SESSION['wrong'] = "Wrong username and password";//If username or password is wrong
 			}
 		}
 	}

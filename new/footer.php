@@ -14,10 +14,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Script to Activate the Carousel -->
-<script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-</script>
+<script src="js/speed.js"></script>
+<!--changes the speed-->
 </body>
 </html>

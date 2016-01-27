@@ -3,8 +3,6 @@
 	require 'dbinfo.php';
 	require 'validate.php';
 	session_start();
-?>
-<?php
 		$errors=array();
 		if(isset($_POST["update"]))
 		{
@@ -90,7 +88,5 @@
 				?><div class="colo"><?php echo $output; ?></div><?php
 			} //echo $connection->error; 
 		}//for submit
-?>
-<?php
 	require 'footer.php';
 ?>
