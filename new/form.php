@@ -11,7 +11,6 @@ session_start();
 $errors = array();
 if(isset($_POST["submit"]))
 {
-	
 	$username = trim($_POST["username"]);
 	$password = md5(trim($_POST["password"]));
 	$email = trim($_POST["email"]);
@@ -139,11 +138,8 @@ VALUES ('$username',
 	'$img_var', 
 	'$check',
 	'$activate')";
-
-
 if (mysqli_query($connection, $q)) 
 {	
-
 	$subject = "Activation mail";
 	$var1 = mymail1($email,$subject,$activate);				
 	$_SESSION['active_msg'] = "Activation link sent to your mail";
@@ -153,8 +149,6 @@ else
 {
 	?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 }
-
-
 			}
 			
 		}
@@ -206,7 +200,7 @@ else
 								<label>Middle_name</label>
 								<input type="text" placeholder="Middle_name" name="middle_name" class="form-control" value="<?php echo $middle_name;?>">
 							</div>
-						</div>//end of the row   
+						</div>  
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<div class="form-group">
