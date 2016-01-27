@@ -2,9 +2,6 @@
 session_start();
 require 'header.php';
 require 'dbinfo.php';
-?>
-
-<?php
 if($_SESSION['id'])
 {
 	$id=$_SESSION['id'];
@@ -62,9 +59,7 @@ else
 						<label>First_Name:</label>
 						<label><?php echo $first_name; ?></label>
 					</div>
-
 					<div class="col-sm-4 form-group">
-						
 						<label>Last_Name:</label>
 						<label><?php echo $last_name; ?></label>
 					</div>
@@ -73,7 +68,7 @@ else
 						<label><?php echo $middle_name; ?></label>
 					</div>
 				</div>     
-				<!--end of row1--> 
+				<!--end of row--> 
 				<div class="row">
 					<div class="col-sm-4 form-group">
 						<label>Username:</label>
@@ -102,7 +97,7 @@ else
 						<label>Date of birth:</label>
 						<label><?php echo $dob; ?></label>
 					</div>
-				</div> <!--end of the row3--> 
+				</div> <!--end of the row--> 
 				<div class="row col-sm-6 ">
 					<h4>Residential Address</h4>
 					<div class="col-sm-12 form-group">
@@ -125,7 +120,7 @@ else
 						<label>Fax   :</label>
 						<label><?php echo $fax; ?></label>
 					</div>
-				</div><!-- end of the  -->
+				</div><!-- end of the row -->
 				<div class="col-sm-6 off1">
 					<h4>Office Address</h4>
 					<div class="col-sm-12 form-group">
@@ -148,7 +143,7 @@ else
 						<label>Fax   :</label>
 						<label><?php echo $fax1; ?></label>
 					</div>
-				</div><!-- 5end of the  -->
+				</div><!-- end of the row -->
 				<div class="row">
 					<div class="col-sm-12 form-group">
 						<div class="form-group col-sm-6">

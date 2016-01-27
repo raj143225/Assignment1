@@ -4,10 +4,6 @@ require 'dbinfo.php';
 require 'validate.php';
 require 'mail.php';
 session_start();
-
-?>
-<?php
-
 $errors = array();
 if(isset($_POST["submit"]))
 {
@@ -138,21 +134,21 @@ VALUES ('$username',
 	'$img_var', 
 	'$check',
 	'$activate')";
-if (mysqli_query($connection, $q)) 
-{	
-	$subject = "Activation mail";
-	$var1 = mymail1($email,$subject,$activate);				
-	$_SESSION['active_msg'] = "Activation link sent to your mail";
-	header("Location:login.php");
-} 
-else 
-{
-	?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
-}
-			}
-			
+		if (mysqli_query($connection, $q)) 
+		{	
+			$subject = "Activation mail";
+			$var1 = mymail1($email,$subject,$activate);				
+			$_SESSION['active_msg'] = "Activation link sent to your mail";
+			header("Location:login.php");
+		} 
+		else 
+		{
+			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
-		?>
+	}
+			
+}
+?>
 		<div class="col-lg-12 h1 well">
 			<center> Registration Form</center>
 		</div>

@@ -1,8 +1,19 @@
 <?php 
-function has_max_length($value,$max)//length if block
+/*
+	Purpose: Calculates the length of the value and compares with maximum value
+	Input Parameters: Input value and Max length value
+	Return Value: True if its is more than maximum length or false
+*/
+function has_max_length($value,$max)//for max length 
 {
 	return strlen($value) <= $max;
 }
+/*
+	Purpose: Calculates the maximum length of the all the array of elements
+	Input Parameters: Array of values, that array contains input type names
+	Return Value: Stores error message in array of errors if there is any error
+	Note:It calls another function for finding length if each element and comapares with maximum value
+*/
 function validate_max_lengths($fields_max_length)//function for length
 {
 	global $errors;
@@ -15,10 +26,21 @@ function validate_max_lengths($fields_max_length)//function for length
 		}
 	}
 }
+/*
+	Purpose: Calculates the length of the value and compares with minimum value
+	Input Parameters: Input value and Minimum length value
+	Return Value: True if its is less than than minimum length or true
+*/
 function has_min_length($value,$min)//min length if checking
 {
 	return strlen($value) < $min;
 }
+/*
+	Purpose: Calculates the minimum length of the all the array of elements
+	Input Parameters: Array of values, that array contains input type names
+	Return Value: Stores error message in array of errors if there is any error
+	Note:It calls another function for finding length if each element and comapares with manimum value
+*/
 function validate_min_lengths($fields_min_length)//min length function
 {
 	global $errors;
@@ -31,10 +53,21 @@ function validate_min_lengths($fields_min_length)//min length function
 		}
 	}
 }
+/*
+	Purpose: to find the value is empty or not
+	Input Parameters: input value
+	Return Value: True if its is empty or false
+*/
 function has_presence($value)//not empty block
 {
 	return isset($value) && $value !== "";
 }
+/*
+	Purpose: Tells the input values contains any values or not(empty)
+	Input Parameters: Array of values, that array contains input type names
+	Return Value: Stores error message in array of errors if there is any error
+	Note:It calls another function to find whether the each input value is empty or not
+*/
 function all_prestnt($name_fields_presence)//function for not empty
 {
 	global $errors;
@@ -47,6 +80,11 @@ function all_prestnt($name_fields_presence)//function for not empty
 		}
 	}
 }
+/*
+	Purpose: Displays the errors in a unordered list
+	Input Parameters: Array of values, that array contains all errors
+	Return Value: a variable which contains all the errors
+*/
 function form_errors($errors = array())//errors printing
 {
 	$output = "";
@@ -64,6 +102,11 @@ function form_errors($errors = array())//errors printing
 	}
 	return $output;
 }
+/*
+	Purpose: To find the input value is in proper format or nor (regular format) 
+	Input Parameters: Array of values, that array contains input type names
+	Return Value: Stores error message in array of errors if there is any error
+*/
 function all_regular($name_regular)//regula format function
 {
 	global $errors;
@@ -76,6 +119,5 @@ function all_regular($name_regular)//regula format function
 		}
 	}
 }
-
 ?>
 
