@@ -11,5 +11,5 @@ if (!$connection)
 //Change the path according to your project path
 DEFINE('URL', 'http://localhost/project/Assignment1/new');
 //Change the path according to your project path
-DEFINE('img_path','/var/www/htmlproject/Assignment1/new/img');
+DEFINE('img_path','/var/www/html/project/Assignment1/new/img/');
 ?>

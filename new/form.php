@@ -43,7 +43,7 @@ if(isset($_POST["submit"]))
     	$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     	$uploadOk = 0;
 	}
-	if($uploadok == 1)
+	if($uploadOk == 1)
 	{
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 	}//uploading image

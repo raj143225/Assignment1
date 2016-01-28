@@ -54,7 +54,7 @@ if(isset($_POST["update"]))
     		$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     		$uploadOk = 0;
 		}
-		if($uploadok == 1)
+		if($uploadOk == 1)
 		{
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 		}
@@ -68,7 +68,7 @@ if(isset($_POST["update"]))
 				$img_var = trim($rows1['img']);	
     		}//Old Image
     	}// Updated Image Upload
-	}
+	} 
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);
 	$name_fields_presence = array("username","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","zip1","fax1","dob");
@@ -111,10 +111,12 @@ if(isset($_POST["update"]))
 		comment='$comment', 
 		dob='$dob', 
 		img='$img_var' WHERE id='$id'";
+
+
 		if (mysqli_query($connection, $q)) 
 		{		
 			$_SESSION["succ"]="Profile updated successfully";
-			header("Location:detail.php");
+			//header("Location:detail.php");
 		} 
 		else 
 		{
