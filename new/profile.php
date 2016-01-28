@@ -43,7 +43,7 @@ if(isset($_POST["update"]))
      }
     else
      {
-    	$target_dir = "img_path";
+    	$target_dir = img_path;
 		$target_file = $target_dir . basename($_FILES["img"]["name"]);
 		$img_var = basename($_FILES["img"]["name"]);
 		$uploadOk = 1;
