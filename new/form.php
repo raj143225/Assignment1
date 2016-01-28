@@ -32,9 +32,9 @@ if(isset($_POST["submit"]))
 	$comment = stripslashes(trim($_POST["text1"]));
 	$check = trim($_POST["check"]);
 	//POST values
-	$target_dir = "/var/www/html/new/img/$img";
-	$target_file = $target_dir . basename($_FILES["img1"]["name"]);
-	$img_var = basename($_FILES["img1"]["name"]);
+	$target_dir = "img_path";
+	$target_file = $target_dir . basename($_FILES["img"]["name"]);
+	$img_var = basename($_FILES["img"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -45,7 +45,7 @@ if(isset($_POST["submit"]))
 	}
 	if($uploadok == 1)
 	{
-    		move_uploaded_file($_FILES["img1"]["tmp_name"], $target_file);
+    		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 	}//uploading image
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);	//for regular message check	
@@ -319,7 +319,7 @@ VALUES ('$username',
 						<div class="row col-sm-12">
 							<div class="form-group col-sm-6">
 								<label for="upload">Upload Image:</label>
-								<input type='file' name="img1" onchange="readURL(this)" />
+								<input type='file' name="img" onchange="readURL(this)" />
 								<img id="blah" src="<?php echo $img;?>" alt="your image" />-
 								<?php if($errors["img"]) { ?>
 									<lable class="flab1"><?php echo "<br/>" . $errors["img"]; $errors["img"]=null ?></lable><?php } ?>

@@ -8,7 +8,7 @@ require 'dbinfo.php';
 */
 function mymail($email,$subject,$activate)
 {	
-  $msg = URL . '/activate.php?email={$email}&key={$activate}';
+  $msg = URL . "/activate.php?email={$email}&key={$activate}";
   $headers = 'From: rajkumararisetty143@gmail.com' . "\r\n";
   $headers .= "MIME-Version: 1.0" . "\r\n";
   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";

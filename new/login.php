@@ -29,9 +29,10 @@ if(isset($_POST["submit"]))
 			}
 		else 
 		{
-			$query2="SELECT id FROM reg where user_name='$username' AND password='$password'";
-		    $resul1=mysqli_query($connection, $query2);
-		    if(!$result1 && !$rows1 = mysqli_fetch_assoc($result1)) 
+			$query2="SELECT user_name FROM reg where user_name='$username' AND password='$password'";
+		    $result1=mysqli_query($connection, $query2);
+		    $rows1 = mysqli_fetch_assoc($result1);
+		    if($rows1['user_name']) 
 			{
 				$_SESSION['wrong'] = "Not activated";//If not activated because of some issue
 			}
