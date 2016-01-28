@@ -8,4 +8,6 @@ if (!$connection)
 	echo "problem<br/>";
 	die("Connection Problem");
 }
+//Change the path according to your project path
+DEFINE('URL', 'http://localhost/project/Assignment1/new');
 ?>
