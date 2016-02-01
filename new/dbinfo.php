@@ -3,10 +3,9 @@ $db_username = "rajkumar";
 $db_password = "rajkumar";
 $db_database = "REGISTRATION";
 $connection = mysqli_connect('localhost', $db_username, $db_password, $db_database);
-if (!$connection) 
-{	
+if (!$connection) {	
 	echo "problem<br/>";
-	die("Connection Problem");
+	echo "Connection Problem";
 }
 //Change the path according to your project path
 DEFINE('URL', 'http://localhost/project/Assignment1/new');

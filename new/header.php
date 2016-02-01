@@ -16,7 +16,7 @@
    <link href="css/styleform.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <link href="css/business-casual.css" rel="stylesheet">
-     <script src="js/img.js"></script>
+    <script src="js/img.js"></script>
 </head>
 <body>
     <div class="brand">Mindfire Solutions</div>

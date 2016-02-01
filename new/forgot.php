@@ -2,43 +2,33 @@
 require 'header.php';
 require 'dbinfo.php';
 require 'mail.php';
-session_start();
-?>
-<?php	
-if(isset($_POST['send']))
-{
+session_start();	
+if(isset($_POST['send'])){
 	$email = trim($_POST['email']);
 	$password = md5(trim($_POST["password"]));
-	if((isset($_POST['email']) && $_POST['email'] !== "") && (isset($_POST['password']) && $_POST['password'] !== ""))
-	{
+	if((isset($_POST['email']) && $_POST['email'] !== "") && (isset($_POST['password']) && $_POST['password'] !== "")){
 		$activate=md5(uniqid(rand(), true));
 		$q1="SELECT IF(EXISTS(SELECT id FROM reg WHERE email_id='$email'),1,0)";
 		$val=mysqli_query($connection,$q1);
 		$val1=mysqli_fetch_assoc($val);
 		$val2= $val1["IF(EXISTS(SELECT id FROM reg WHERE email_id='$email'),1,0)"];
-		if($val2) 
-		{
+		if($val2) {
 			$q="UPDATE reg SET activation='0',password='$password',act_com='$activate' where email_id='$email'";
 			$result=mysqli_query($connection,$q);
-			if($result)
-			{
+			if($result){
 				mymail1($email,"click on the below link to login",$activate);
 				$_SESSION['re_act'] = "Check your mail for Re-activation";
 			}
-			else
-			{
+			else{
 				$_SESSION['wrong_email'] = "Somthing Wrong"; 
 			}
 		}
 	}
-	else
-	{
-		if($email == "")
-		{
+	else{
+		if($email == ""){
 			$_SESSION['blank_email'] = "email can't be blank";
 		}
-		if($_POST["password"] == "")
-		{
+		if($_POST["password"] == ""){
 			$_SESSION['blank_passs'] = "Password can't be blank";
 			
 		} 
@@ -60,6 +50,7 @@ if(isset($_POST['send']))
 						<input type="text" name="email" class="form-control" id="email" placeholder="Email" value="<?php echo $_POST['email'] ?>">
 						<?php if($_SESSION['blank_email']) { ?>
 					<lable class="lab1"><?php echo $_SESSION['blank_email']; $_SESSION['blank_email']=null ?></lable><?php } ?>
+					<div id="d3"></div>
 					</div>
 				</div>
 			</div>
@@ -70,12 +61,14 @@ if(isset($_POST['send']))
 						<input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="<?php echo $_POST['password'] ?>">
 						<?php if($_SESSION['blank_passs']) { ?>
 					<lable class="lab1"><?php echo $_SESSION['blank_passs']; $_SESSION['blank_passs']=null ?></lable><?php } ?>
+					<div id="d2"></div>
+
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-12 row">	
 				<div class="form-group col-sm-12 b1">	
-					<center><input type="submit" class="btn btn-lg btn-info" name="send" value="send" placeholder="Send"></center>	
+					<center><button type="submit" id="forgot_submit" class="btn btn-lg btn-info" name="send" value="send" placeholder="Send">Send</button></center>	
 				</div >		
 			</div>
 		</form> 

@@ -6,8 +6,7 @@ require 'dbinfo.php';
 	Output:Sends an activation mail to the users mail id 
 	Note:this function is used for login activation,forgot password and change password also
 */
-function mymail($email,$subject,$activate)
-{	
+function mymail($email,$subject,$activate){	
   $msg = URL . "/activate.php?email={$email}&key={$activate}";
   $headers = 'From: rajkumararisetty143@gmail.com' . "\r\n";
   $headers .= "MIME-Version: 1.0" . "\r\n";
@@ -17,8 +16,7 @@ function mymail($email,$subject,$activate)
 /*
 	Just calling the above function
 */
-function mymail1($email,$subject,$activate)
-{
+function mymail1($email,$subject,$activate){
   mymail($email,$subject,$activate);
 }
 ?>

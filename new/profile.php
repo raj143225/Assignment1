@@ -3,11 +3,8 @@ require 'header.php';
 require 'dbinfo.php';
 require 'validate.php';
 session_start();
-?>
-<?php
 $errors = array();
-if(isset($_POST["update"]))
-{
+if(isset($_POST["update"])){
 	$id = $_SESSION['id'];
 	$username = trim($_POST["username"]);
 	$email = trim($_POST["email"]);
@@ -31,40 +28,33 @@ if(isset($_POST["update"]))
 	$fax1 = trim($_POST["fax1"]);
 	$comment = addslashes(trim($_POST["text1"]));
 	//POST values
-	if($_FILES["img"]["name"] == "")
-	{
+	if($_FILES["img"]["name"] == ""){
 		$query2 = "SELECT img FROM reg WHERE id='$_SESSION[id]'";
 		$result1 = mysqli_query($connection, $query2);
 		$rows1 = mysqli_fetch_assoc($result1);
-		if($result1 && $rows1)
-		{
+		if($result1 && $rows1){
 			$img_var = trim($rows1['img']);	
     	}	//Old Imag
      }
-    else
-     {
+    else{
     	$target_dir = img_path;
 		$target_file = $target_dir . basename($_FILES["img"]["name"]);
 		$img_var = basename($_FILES["img"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) 
-		{
+		&& $imageFileType != "gif" ) {
     		$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     		$uploadOk = 0;
 		}
-		if($uploadOk == 1)
-		{
+		if($uploadOk == 1){
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 		}
-		if($_FILES["img"]["name"] == "")
-		{
+		if($_FILES["img"]["name"] == ""){
 			$query2="SELECT img FROM reg WHERE id='$_SESSION[id]'";
 			$result1=mysqli_query($connection, $query2);
 			$rows1=mysqli_fetch_assoc($result1);
-			if($result1 && $rows1)
-			{
+			if($result1 && $rows1){
 				$img_var = trim($rows1['img']);	
     		}//Old Image
     	}// Updated Image Upload
@@ -79,14 +69,12 @@ if(isset($_POST["update"]))
 			//max length check
 	$fields_min_length = array("username" => 8,"email" => 8,"pno" => 9);	
 	validate_min_lengths($fields_min_length);
-	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email))
-	{
+	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){
 		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
 	}//email format checking//for email varification;
 	$output = form_errors($errors);
    //end of validations
-	if(!$output)
-	{
+	if(!$output){
    		$activate=md5(uniqid(rand(), true));
    		//creating new unique activation code
 		$q="UPDATE reg SET user_name='$username', 
@@ -113,51 +101,47 @@ if(isset($_POST["update"]))
 		img='$img_var' WHERE id='$id'";
 
 
-		if (mysqli_query($connection, $q)) 
-		{		
-			$_SESSION["succ"]="Profile updated successfully";
+		if (mysqli_query($connection, $q)) {		
+			$_SESSION["succ"] = "Profile updated successfully";
 			//header("Location:detail.php");
 		} 
-		else 
-		{
+		else {
 			?><div class = "colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
 	}	//for $output
 }//for submit
-		?>
-		<!-- updation -->
-		<?php
-		if($_SESSION['id'])
-		{
+		 //updation 
+		if($_SESSION['id']){
 			$id=$_SESSION['id'];
 			$query1="SELECT * FROM reg WHERE id='$id'";
 			$result=mysqli_query($connection, $query1);
 			$rows=mysqli_fetch_assoc($result); 
 		}
-		else
-		{
+		else{
 			header("Location: login.php");
 		}
-		?>
+?>
 		<div class="col-lg-12 h1 well">
 			<center> Update </center>
 		</div>
 		<div class="col-lg-12 well">
 			<div class="row">
-				<form class="form" action="profile.php" method="post" enctype="multipart/form-data">
+				<form class="form"  action="profile.php" method="post" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<label>Username</label>
-								<input type="text" value="<?php echo $rows['user_name'];?>" name="username" class="form-control"  />
+								<input type="text" value="<?php echo $rows['user_name'];?>" id="username" name="username" class="form-control"  />
 								<?php if($errors["username"]) { ?>
 								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php } ?>
+								<div id="d1"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>Email-id</label>
-								<input type="text" value="<?php echo $rows['email_id'];?>" name="email" class="form-control">
+								<input type="text" value="<?php echo $rows['email_id'];?>" id="email" name="email" class="form-control">
 								<?php if($errors["email"]) { ?>
 								<lable class="flab1"><?php echo $errors["email"]; $errors["email"]=null ?></lable><?php } ?>
+								<div id="d3"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>DateOfBirth</label>
@@ -167,15 +151,17 @@ if(isset($_POST["update"]))
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<label>first_name</label>
-								<input type="text" value="<?php echo $rows['first_name'];?>" name="first_name" class="form-control">
+								<input type="text" value="<?php echo $rows['first_name'];?>" id="first_name" name="first_name" class="form-control">
 								<?php if($errors["first_name"]) { ?>
 								<lable class="flab1"><?php echo $errors["first_name"]; $errors["first_name"]=null ?></lable><?php } ?>
+								<div id="d4"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>Last_name</label>
-								<input type="text" value="<?php echo $rows['last_name'];?>" name="last_name" class="form-control">
+								<input type="text" value="<?php echo $rows['last_name'];?>" id="last_name" name="last_name" class="form-control">
 								<?php if($errors["last_name"]) { ?>
 								<lable class="flab1"><?php echo $errors["last_name"]; $errors["last_name"]=null ?></lable><?php } ?>
+								<div id="d5"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>Middle_name</label>
@@ -193,15 +179,17 @@ if(isset($_POST["update"]))
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>Employer</label>
-								<input type="text" class="form-control" value="<?php echo $rows['employer'];?>" name="employer" id="Employer" >
+								<input type="text" class="form-control" value="<?php echo $rows['employer'];?>" name="employer" id="employer" >
 								<?php if($errors["employer"]) { ?>
 								<lable class="flab1"><?php echo $errors["employer"]; $errors["employer"]=null ?></lable><?php } ?>									
+								<div id="d18"></div>
 							</div>	
 							<div class="col-sm-4 form-group">
 								<label>Ph.No</label>
-								<input type="text" value="<?php echo $rows['ph_no'];?>" name="pno" class="form-control">
+								<input type="text" value="<?php echo $rows['ph_no'];?>" id="pno" name="pno" class="form-control">
 								<?php if($errors["pno"]) { ?>
 								<lable class="flab1"><?php echo $errors["pno"]; $errors["pno"]=null ?></lable><?php } ?>
+								<div id="d6"></div>
 							</div>	
 						</div><!--row  ending-->
 						<div class="row">
@@ -209,66 +197,76 @@ if(isset($_POST["update"]))
 								<center><h3>Residential Address</h3></center>
 								<div class="col-sm-12 form-group">
 									<label>Street</label>
-									<input type="text" value="<?php echo $rows['street'];?>" name="street"  class="form-control">
+									<input type="text" value="<?php echo $rows['street'];?>" id="street" name="street"  class="form-control">
 									<?php if($errors["street"]) { ?>
 									<lable class="flab1"><?php echo $errors["street"]; $errors["street"]=null ?></lable><?php } ?>
+									<div id="d7"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>City</label>
-									<input type="text" value="<?php echo $rows['city'];?>" name="city"  class="form-control">
+									<input type="text" value="<?php echo $rows['city'];?>" id="city" name="city"  class="form-control">
 										<?php if($errors["city"]) { ?>
 									<lable class="flab1"><?php echo $errors["city"]; $errors["city"]=null ?></lable><?php } ?>
+									<div id="d8"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>State</label>
-									<input type="text" value="<?php echo $rows['state']; ?>" name="state"  class="form-control">
+									<input type="text" value="<?php echo $rows['state']; ?>" name="state" id="state"  class="form-control">
 									<?php if($errors["state"]) { ?>
 									<lable class="flab1"><?php echo $errors["state"]; $errors["state"]=null ?></lable><?php } ?>		
+									<div id="d9"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>Zip</label>
-									<input type="text" value="<?php echo $rows['zip'];?>" name="zip" class="form-control">
+									<input type="text" value="<?php echo $rows['zip'];?>" id="zip" name="zip" class="form-control">
 									<?php if($errors["zip"]) { ?>
 									<lable class="flab1"><?php echo $errors["zip"]; $errors["zip"]=null ?></lable><?php } ?>
+									<div id="d10"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>Fax</label>
-									<input type="text" value="<?php echo $rows['fax'];?>" name="fax" class="form-control">
+									<input type="text" value="<?php echo $rows['fax'];?>" id="fax" name="fax" class="form-control">
 									<?php if($errors["fax"]) { ?>
 									<lable class="flab1"><?php echo $errors["fax"]; $errors["fax"]=null ?></lable><?php } ?>
+									<div id="d11"></div>
 								</div>
 							</div>	
 							<div class="col-sm-6 a2">
 								<center><h3>Office Address</h3></center>
 								<div class="col-sm-12 form-group">
 									<label>Street</label>
-									<input type="text" value="<?php echo $rows['street1'];?>" name="street1"  class="form-control">
+									<input type="text" value="<?php echo $rows['street1'];?>" name="street1" id="street1" class="form-control">
 									<?php if($errors["street1"]) { ?>
+									<div id="d12"></div>
 									<lable class="flab1"><?php echo $errors["street1"]; $errors["street1"]=null ?></lable><?php } ?>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>City</label>
-									<input type="text" value="<?php echo $rows['city1'];?>" name="city1"  class="form-control">
+									<input type="text" value="<?php echo $rows['city1'];?>" name="city1" id="city1"  class="form-control">
 									<?php if($errors["city1"]) { ?>
 									<lable class="flab1"><?php echo $errors["city1"]; $errors["city1"]=null ?></lable><?php } ?>
+									<div id="d13"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>State</label>
-									<input type="text"  value="<?php echo $rows['state1'];?>" name="state1"  class="form-control" >
+									<input type="text"  value="<?php echo $rows['state1'];?>" name="state1" id="state1" class="form-control" >
 									<?php if($errors["state1"]) { ?>
 									<lable class="flab1"><?php echo $errors["state1"]; $errors["state1"]=null ?></lable><?php } ?>
+									<div id="d14"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>Zip</label>
-									<input type="text" value="<?php echo $rows['zip1'];?>" name="zip1" class="form-control">
+									<input type="text" value="<?php echo $rows['zip1'];?>" name="zip1" id="zip1" class="form-control">
 									<?php if($errors["zip1"]) { ?>
 									<lable class="flab1"><?php echo $errors["zip1"]; $errors["zip1"]=null ?></lable><?php } ?>
+									<div id="d15"></div>
 								</div>
 								<div class="col-sm-12 form-group">
 									<label>Fax</label>
-									<input type="text" value="<?php echo $rows['fax1'];?>" name="fax1" class="form-control">
+									<input type="text" value="<?php echo $rows['fax1'];?>" name="fax1" id="fax1" class="form-control">
 									<?php if($errors["fax1"]) { ?>
 									<lable class="flab1"><?php echo $errors["fax1"]; $errors["fax1"]=null ?></lable><?php } ?>
+									<div id="d16"></div>
 								</div>
 							</div>
 						</div><!--row 3 ending-->
@@ -286,13 +284,14 @@ if(isset($_POST["update"]))
 		
 								<?php if($errors["text1"]) { ?>
 								<lable class="flab1"><?php echo $errors["text1"]; $errors["text1"]=null ?></lable><?php } ?>
+								<div id="d17"></div>
 							</div>
 						</div><!--row 4 ending-->
-						<center><button type="submit" name="update" value="Update" class="btn btn-lg btn-info">Update</button></center>					
+						<center><button type="submit" id="submit" name="update" value="Update" class="btn btn-lg btn-info">Update</button></center>					
 					</div>
 				</form> 
 			</div>
 		</div>
-		<?php
-			require 'footer.php';
-		?>
+<?php
+	require 'footer.php';
+?>
