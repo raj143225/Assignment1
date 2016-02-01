@@ -15,8 +15,8 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- Script to Activate the Carousel -->
  <!--<script src="jsvalidation.js"></script>-->
- <script src="js/jqvalidation.js"></script>
-
+ <script src="js/jqvalidation.js?12534"></script>
 <script src="js/img.js"></script>
+<script src="js/ajaxlogin.js"></script>
 </body>
 </html>

@@ -59,6 +59,52 @@ else{
 
 });
 });
+//form and registration
+$(document).ready(function(){
+$('#log_submit').click(function(e){
+var x = new Array();
+x[0] = max_length("#username","#d1",10);
+x[1] = max_length("#password","#d2",10);
+x[2] = is_empty("#username","#d1");
+x[3] = is_empty("#password","#d2");
+var decider=0;
+for (var i = 0; i < x.length; i++) {
+	if(x[i] === false){
+		decider++;	
+	}
+}
+if(decider !== 0){
+	return false;
+}
+else{
+	return true;
+}
+
+});
+});
+//for login
+$(document).ready(function(){
+$('#forgot_submit').click(function(e){
+var x = new Array();
+x[0] = regular_exp('#email','#d3',/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i);
+x[1] = is_empty("#email","#d3");
+x[2] = max_length("#password","#d2",10);
+x[3] = is_empty("#password","#d2");
+var decider=0;
+for (var i = 0; i < x.length; i++) {
+	if(x[i] === false){
+		decider++;	
+	}
+}
+if(decider !== 0){
+	return false;
+}
+else{
+	return true;
+}
+
+});
+});
 /*	Purpose: to find the input value is empty or not
 	Input Parameters: name of the input and id where to print error 
 	Return Value: True if its is empty or false
@@ -127,8 +173,9 @@ function numbers_only(name,id){
 	Return Value: return false if the input is not in proper format
 */
 function regular_exp(name,id,reg_exp){
-	var x= $(name).val();
-	var regular = reg_exp;
+	var x = $(name).val();
+		var regular = reg_exp;
+
 	if(!(x.match(regular))){
 		var error = '<div class="alert-danger" role="alert">' +
 						'<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +

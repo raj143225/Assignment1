@@ -50,6 +50,7 @@ if(isset($_POST['send'])){
 						<input type="text" name="email" class="form-control" id="email" placeholder="Email" value="<?php echo $_POST['email'] ?>">
 						<?php if($_SESSION['blank_email']) { ?>
 					<lable class="lab1"><?php echo $_SESSION['blank_email']; $_SESSION['blank_email']=null ?></lable><?php } ?>
+					<div id="d3"></div>
 					</div>
 				</div>
 			</div>
@@ -60,12 +61,14 @@ if(isset($_POST['send'])){
 						<input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="<?php echo $_POST['password'] ?>">
 						<?php if($_SESSION['blank_passs']) { ?>
 					<lable class="lab1"><?php echo $_SESSION['blank_passs']; $_SESSION['blank_passs']=null ?></lable><?php } ?>
+					<div id="d2"></div>
+
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-12 row">	
 				<div class="form-group col-sm-12 b1">	
-					<center><input type="submit" class="btn btn-lg btn-info" name="send" value="send" placeholder="Send"></center>	
+					<center><button type="submit" id="forgot_submit" class="btn btn-lg btn-info" name="send" value="send" placeholder="Send">Send</button></center>	
 				</div >		
 			</div>
 		</form> 
