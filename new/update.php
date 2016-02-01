@@ -4,8 +4,7 @@
 	require 'validate.php';
 	session_start();
 		$errors=array();
-		if(isset($_POST["update"]))
-		{
+		if(isset($_POST["update"])){
 			$id = $_SESSION['id'];
 			$username = trim($_POST["username"]);
 			$password = trim($_POST["password"]);
@@ -42,14 +41,12 @@
 			//max length check
 			$fields_min_length = array("username" => 8,"password" => 8,"email" => 8,"pno" => 9);	
 			validate_min_lengths($fields_min_length);
-			if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email))
- 			{
+			if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){
     				$errors["email"] = "wrong" . ucfirst("email") .  " pattern ";
   			}
   			//email format checking//for email varification;
   			$output = form_errors($errors);//end of validations
-   			if(!$output)
-   			{
+   			if(!$output){
    				$activate = md5(uniqid(rand(), true));//creating new unique activation code
    				$q = "UPDATE reg SET user_name='$username', 
 					password='$password', 
@@ -73,18 +70,15 @@
 					comment='$comment', 
 					dob='$dob', 
 					img='$img_var' WHERE id='$id'";
-				if (mysqli_query($connection, $q)) 
-    			{		
+				if (mysqli_query($connection, $q)) {		
    					
     	 			header("Location:detail.php");
     			} 
-   			 	else 
-    			{
+   			 	else {
      				?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 				}
 			}	//for $output
-			else 
-			{
+			else {
 				?><div class="colo"><?php echo $output; ?></div><?php
 			} //echo $connection->error; 
 		}//for submit

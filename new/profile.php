@@ -3,11 +3,8 @@ require 'header.php';
 require 'dbinfo.php';
 require 'validate.php';
 session_start();
-?>
-<?php
 $errors = array();
-if(isset($_POST["update"]))
-{
+if(isset($_POST["update"])){
 	$id = $_SESSION['id'];
 	$username = trim($_POST["username"]);
 	$email = trim($_POST["email"]);
@@ -31,40 +28,33 @@ if(isset($_POST["update"]))
 	$fax1 = trim($_POST["fax1"]);
 	$comment = addslashes(trim($_POST["text1"]));
 	//POST values
-	if($_FILES["img"]["name"] == "")
-	{
+	if($_FILES["img"]["name"] == ""){
 		$query2 = "SELECT img FROM reg WHERE id='$_SESSION[id]'";
 		$result1 = mysqli_query($connection, $query2);
 		$rows1 = mysqli_fetch_assoc($result1);
-		if($result1 && $rows1)
-		{
+		if($result1 && $rows1){
 			$img_var = trim($rows1['img']);	
     	}	//Old Imag
      }
-    else
-     {
+    else{
     	$target_dir = img_path;
 		$target_file = $target_dir . basename($_FILES["img"]["name"]);
 		$img_var = basename($_FILES["img"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) 
-		{
+		&& $imageFileType != "gif" ) {
     		$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     		$uploadOk = 0;
 		}
-		if($uploadOk == 1)
-		{
+		if($uploadOk == 1){
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 		}
-		if($_FILES["img"]["name"] == "")
-		{
+		if($_FILES["img"]["name"] == ""){
 			$query2="SELECT img FROM reg WHERE id='$_SESSION[id]'";
 			$result1=mysqli_query($connection, $query2);
 			$rows1=mysqli_fetch_assoc($result1);
-			if($result1 && $rows1)
-			{
+			if($result1 && $rows1){
 				$img_var = trim($rows1['img']);	
     		}//Old Image
     	}// Updated Image Upload
@@ -79,14 +69,12 @@ if(isset($_POST["update"]))
 			//max length check
 	$fields_min_length = array("username" => 8,"email" => 8,"pno" => 9);	
 	validate_min_lengths($fields_min_length);
-	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email))
-	{
+	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){
 		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
 	}//email format checking//for email varification;
 	$output = form_errors($errors);
    //end of validations
-	if(!$output)
-	{
+	if(!$output){
    		$activate=md5(uniqid(rand(), true));
    		//creating new unique activation code
 		$q="UPDATE reg SET user_name='$username', 
@@ -113,32 +101,26 @@ if(isset($_POST["update"]))
 		img='$img_var' WHERE id='$id'";
 
 
-		if (mysqli_query($connection, $q)) 
-		{		
-			$_SESSION["succ"]="Profile updated successfully";
+		if (mysqli_query($connection, $q)) {		
+			$_SESSION["succ"] = "Profile updated successfully";
 			//header("Location:detail.php");
 		} 
-		else 
-		{
+		else {
 			?><div class = "colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
 	}	//for $output
 }//for submit
-		?>
-		<!-- updation -->
-		<?php
-		if($_SESSION['id'])
-		{
+		 //updation 
+		if($_SESSION['id']){
 			$id=$_SESSION['id'];
 			$query1="SELECT * FROM reg WHERE id='$id'";
 			$result=mysqli_query($connection, $query1);
 			$rows=mysqli_fetch_assoc($result); 
 		}
-		else
-		{
+		else{
 			header("Location: login.php");
 		}
-		?>
+?>
 		<div class="col-lg-12 h1 well">
 			<center> Update </center>
 		</div>
@@ -293,6 +275,6 @@ if(isset($_POST["update"]))
 				</form> 
 			</div>
 		</div>
-		<?php
-			require 'footer.php';
-		?>
+<?php
+	require 'footer.php';
+?>

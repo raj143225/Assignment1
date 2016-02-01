@@ -2,13 +2,11 @@
 session_start();
 require 'header.php';
 require 'dbinfo.php';
-if($_SESSION['id'])
-{
+if($_SESSION['id']){
 	$id=$_SESSION['id'];
 	$query1="SELECT * FROM reg WHERE id='$id'";
 	$result=mysqli_query($connection, $query1);
-	if ($result && $rows = mysqli_fetch_assoc($result)) 
-	{
+	if ($result && $rows = mysqli_fetch_assoc($result)){
 		$first_name = trim($rows["first_name"]);
 		$last_name = trim($rows["last_name"]);
 		$middle_name = trim($rows["middle_name"]);
@@ -35,19 +33,19 @@ if($_SESSION['id'])
 		$email = trim($rows['email_id']);
 		$img = trim($rows["img"]);   			     
 	} 
-	else 
-	{
-		echo "Error: " . $q . "<br>" . mysqli_error($connection);
-	}
+	else {
+			$_SESSION['con_error']= "Error: " . $q . "<br>" . mysqli_error($connection);
+		}
 }
-else
-{
+else{
 	header("Location: login.php");
 }
 ?>
 <div class="col-lg-12 h1 well">
 	<?php if($_SESSION["succ"]) { ?>
 	<center><lable class="lab4"><?php echo "<br/>" . $_SESSION["succ"]; $_SESSION["succ"]=null ?></lable><?php } ?></center>
+	<?php if($_SESSION["con_error"]) { ?>
+	<center><lable class="lab4"><?php echo "<br/>" . $_SESSION["con_error"]; $_SESSION["con_error"]=null ?></lable><?php } ?></center>
 	<center> Profile</center>
 </div>
 <div class="col-lg-12 well">

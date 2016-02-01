@@ -4,8 +4,7 @@
 	Input Parameters: Input value and Max length value
 	Return Value: True if its is more than maximum length or false
 */
-function has_max_length($value,$max)//for max length 
-{
+function has_max_length($value,$max){
 	return strlen($value) <= $max;
 }
 /*
@@ -14,14 +13,11 @@ function has_max_length($value,$max)//for max length
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function for finding length if each element and comapares with maximum value
 */
-function validate_max_lengths($fields_max_length)//function for length
-{
+function validate_max_lengths($fields_max_length){
 	global $errors;
-	foreach($fields_max_length as $field => $max)
-	{
+	foreach($fields_max_length as $field => $max){
 		$value=trim($_POST[$field]);
-		if(!has_max_length($value,$max))
-		{
+		if(!has_max_length($value,$max)){
 			$errors[$field] = ucfirst($field) . "is to long";
 		}
 	}
@@ -31,8 +27,7 @@ function validate_max_lengths($fields_max_length)//function for length
 	Input Parameters: Input value and Minimum length value
 	Return Value: True if its is less than than minimum length or true
 */
-function has_min_length($value,$min)//min length if checking
-{
+function has_min_length($value,$min){
 	return strlen($value) < $min;
 }
 /*
@@ -41,14 +36,11 @@ function has_min_length($value,$min)//min length if checking
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function for finding length if each element and comapares with manimum value
 */
-function validate_min_lengths($fields_min_length)//min length function
-{
+function validate_min_lengths($fields_min_length){
 	global $errors;
-	foreach ($fields_min_length as $field => $min) 
-	{
+	foreach ($fields_min_length as $field => $min) {
 		$value = trim($_POST[$field]);
-		if(has_min_length($value,$min))
-		{
+		if(has_min_length($value,$min)){
 			$errors[$field] = ucfirst($field) . "  is to short";
 		}
 	}
@@ -58,8 +50,7 @@ function validate_min_lengths($fields_min_length)//min length function
 	Input Parameters: input value
 	Return Value: True if its is empty or false
 */
-function has_presence($value)//not empty block
-{
+function has_presence($value){
 	return isset($value) && $value !== "";
 }
 /*
@@ -68,14 +59,11 @@ function has_presence($value)//not empty block
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function to find whether the each input value is empty or not
 */
-function all_prestnt($name_fields_presence)//function for not empty
-{
+function all_prestnt($name_fields_presence){
 	global $errors;
-	foreach ($name_fields_presence as $field) 
-	{
+	foreach ($name_fields_presence as $field){
 		$value = trim($_POST[$field]);
-		if(!has_presence($value))
-		{
+		if(!has_presence($value)){
 			$errors[$field] = ucfirst($field) . " cannot be blank ";
 		}
 	}
@@ -85,16 +73,13 @@ function all_prestnt($name_fields_presence)//function for not empty
 	Input Parameters: Array of values, that array contains all errors
 	Return Value: a variable which contains all the errors
 */
-function form_errors($errors = array())//errors printing
-{
+function form_errors($errors = array()){
 	$output = "";
-	if(!empty($errors))
-	{
+	if(!empty($errors)){
 		$output = "<div class=\"error\">";
 		$output .= "Please fix the following errors:";
 		$output .= "<ul>";
-		foreach($errors as $key => $error)
-		{
+		foreach($errors as $key => $error){
 			$output .= "<li>{$error}</li>";
 		}
 		$output .= "</ul>";
@@ -107,14 +92,11 @@ function form_errors($errors = array())//errors printing
 	Input Parameters: Array of values, that array contains input type names
 	Return Value: Stores error message in array of errors if there is any error
 */
-function all_regular($name_regular)//regula format function
-{
+function all_regular($name_regular){
 	global $errors;
-	foreach ($name_regular as $fields) 
-	{
+	foreach ($name_regular as $fields){
 		$value = trim($_POST[$fields]);
-		if (!preg_match("/^[a-zA-Z ]*$/",$value)) 
-		{
+		if (!preg_match("/^[a-zA-Z ]*$/",$value)) {
 			$errors[$fields] = ucfirst($fields) . " can have only letters "; 
 		}
 	}

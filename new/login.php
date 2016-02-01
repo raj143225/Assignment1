@@ -2,42 +2,32 @@
 session_start();
 require 'header.php';
 require 'dbinfo.php';
-?>
-<?php
-if(isset($_POST["submit"]))
-{
+if(isset($_POST["submit"])){
 	$username = trim($_POST["username"]);
 	$password = trim($_POST["password"]);
-	if($username == "")
-	{
+	if($username == ""){
 		$_SESSION['blank_user'] = "Username can't be blank";//if empty username
 	}
-	if($password == "")
-	{
+	if($password == ""){
 		$_SESSION['blank_pass'] = "Password can't be blank";//if empty password
 	}
-	else
-	{
+	else{
 		$password = md5($password);
 		$query1 = "SELECT id FROM reg where user_name='$username' AND password='$password' And activation='1'";
 		$result = mysqli_query($connection, $query1);
-		if($result && $rows = mysqli_fetch_assoc($result)) 
-		{
+		if($result && $rows = mysqli_fetch_assoc($result)){
 			$_SESSION["id"] = $rows["id"];
 			$_SESSION["username"] = $username;
 			header("Location: detail.php");
 			}
-		else 
-		{
+		else {
 			$query2="SELECT user_name FROM reg where user_name='$username' AND password='$password'";
 		    $result1=mysqli_query($connection, $query2);
 		    $rows1 = mysqli_fetch_assoc($result1);
-		    if($rows1['user_name']) 
-			{
+		    if($rows1['user_name']){
 				$_SESSION['wrong'] = "Not activated";//If not activated because of some issue
 			}
-			else
-			{
+			else{
 				$_SESSION['wrong'] = "Wrong username and password";//If username or password is wrong
 			}
 		}
@@ -53,6 +43,8 @@ if(isset($_POST["submit"]))
 <lable class="lab2"><?php echo $_SESSION['active_msg']; $_SESSION['active_msg']=null ?></lable><?php } ?>
 <?php if($_SESSION['logout']) { ?>
 <lable class="lab2"><?php echo $_SESSION['logout']; $_SESSION['logout']=null ?></lable><?php } ?>
+<?php if($_SESSION['error_occured_in_activation']) { ?>
+<lable class="lab2"><?php echo $_SESSION['error_occured_in_activation']; $_SESSION['error_occured_in_activation']=null ?></lable><?php } ?>
 <center> LogIn</center> </div>
 <div class="col-lg-12 well">
 	<div class="row">

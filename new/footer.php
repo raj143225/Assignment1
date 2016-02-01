@@ -14,7 +14,9 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Script to Activate the Carousel -->
-<script src="js/speed.js"></script>
-<!--changes the speed-->
+ <!--<script src="jsvalidation.js"></script>-->
+ <script src="js/jqvalidation.js"></script>
+
+<script src="js/img.js"></script>
 </body>
 </html>
