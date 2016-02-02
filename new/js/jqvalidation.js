@@ -1,5 +1,5 @@
 $(document).ready(function(){
-$('#submit').click(function(e){
+$('#reg_submit').click(function(e){
 var x = new Array();
 
 x[0] = max_length("#username","#d1",10);
@@ -77,7 +77,33 @@ if(decider !== 0){
 	return false;
 }
 else{
-	return true;
+	username=$("#username").val();
+	password=$("#password").val();
+	if(username === "" || password === ""){
+		return false;
+	}
+	else{
+		
+		$.ajax({
+                method: 'POST',
+                url: 'loginpost.php',
+                dataType: 'json',
+                data: {
+                    username: username, 
+                    password: password
+                },
+                success: function( response ) {
+                	if(response.id && response.username){
+                  		window.location.replace('detail.php');
+                  	}
+                  	else{
+                  		$("div#ack").html(response.wrong);
+                  	}
+                }
+
+            });
+       	}
+	//return true;
 }
 
 });

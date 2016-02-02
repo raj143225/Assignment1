@@ -13,13 +13,12 @@ require 'header.php';
 <lable class="lab2"><?php echo $_SESSION['logout']; $_SESSION['logout']=null ?></lable><?php } ?>
 <?php if($_SESSION['error_occured_in_activation']) { ?>
 <lable class="lab2"><?php echo $_SESSION['error_occured_in_activation']; $_SESSION['error_occured_in_activation']=null ?></lable><?php } ?>
+<div id="ack" class="lab2"></div>
 <center> LogIn</center> </div>
 <div class="col-lg-12 well">
 	<div class="row">
 		<form class="form" id="my_form" action="loginpost.php" method="post">
 			<div class="col-sm-12 row">
-				<?php if($_SESSION['wrong']) { ?>
-				<lable class="lab3"><?php echo $_SESSION['wrong']; $_SESSION['wrong']=null ?></lable><?php } ?>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="username"><h4><center>Username</h4></center></label>
 					<div class="col-sm-8">
@@ -49,7 +48,7 @@ require 'header.php';
 					<a class="a1" href="forgot.php">Forgot/Change Password</a>
 				</div>
 			</div>
-			<div id="ack"></div>
+			
 		</form> 
 	</div>
 </div>

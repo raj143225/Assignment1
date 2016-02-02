@@ -44,6 +44,9 @@ if(isset($_POST["submit"])){
 	if($uploadok == 1){
     		move_uploaded_file($_FILES["img1"]["tmp_name"], $target_file);
 	}//uploading image
+	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i/', $email)){
+		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
+	}//email format checking
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);	//for regular message check	
 	$name_fields_presence = array("username","password","email","first_name","last_name","dob","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob","text1");
@@ -54,9 +57,6 @@ if(isset($_POST["submit"])){
 	validate_min_lengths($fields_min_length);
 	$name_fields_presence = array("username","password","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob");
 	all_prestnt($name_fields_presence);
-	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){
-		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
-	}		//email format checking
 	if($check==""){	
 		$errors["check"] = ucfirst("check") . " needs to done to register ";
 	}		//for email varification;
@@ -136,30 +136,33 @@ if (mysqli_query($connection, $q)) {
 else {
 	?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 }
-
-
-			}
+	}
 			
 		}
 		?>
+		<div id="ackr"></div>
 		<div class="col-lg-12 h1 well">
 			<center> Registration Form</center>
 		</div>
 		<div class="col-lg-12 well">
+	
 			<div class="row">
-				<form class="form" action="form.php" method="post"  enctype="multipart/form-data">
+				<form class="form" id="reg_form" action="form.php" method="post"  enctype="multipart/form-data">
 					<div class="col-sm-12">
-
 						<div class="row">
-							<div class="col-sm-4 form-group">
+							<div class="col-sm-4 form-group icons">
+								<span class="glyphicon glyphicon-user"></span>
 								<label>Username</label>
 								<input type="text" placeholder="Username" name="username" id="username" class="form-control" value="<?php echo $username; ?>" >
-								<?php if($errors["username"]) { ?>
-								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php } ?>
+								 <?php if($errors["username"]) { ?>
+								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php } else{
+									?><?php }
+									?>
 								<div id="d1"></div>
+								<div  class="has-success" id="d1d1"></div>
 							</div>
 
-							<div class="col-sm-4 form-group">
+							<div class="col-sm-4 form-group icon">
 								<label>Password</label>
 								<input type="password" placeholder="Password" name="password" id="password" class="form-control" value="<?php echo $_POST['password'];?>" >
 								<?php if($errors["password"]) { ?>
@@ -168,11 +171,13 @@ else {
 							</div>
 							
 							<div class="col-sm-4 form-group">
+								<span class="glyphicon glyphicon-envelope"></span>
 								<label>Email-id</label>
 								<input type="text" placeholder="Email_Id" id="email" name="email" class="form-control" value="<?php echo $email;?>" >
 								<?php if($errors["email"]) { ?>
 								<lable class="flab1"><?php echo $errors["email"]; $errors["email"]=null ?></lable><?php } ?>
 								<div id="d3"></div>
+								<div  class="has-success" id="d3d3"></div>
 							</div>
 						</div> 
 						<div class="row">
@@ -218,6 +223,7 @@ else {
 							</div>
 							<div class="form-group c1">
 								<div class="col-sm-4">
+									<span class="glyphicon glyphicon-calendar"></span>
 									<label>Date-Of-Birth</label>
 									<input type="date" class="form-control" name="dob" id="dob" value="<?php echo $dob;?>">
 								</div>
@@ -225,6 +231,7 @@ else {
 						</div><!--row  ending-->
 						<div class="row">
 							<div class="col-sm-4 form-group">
+								<span class="glyphicon glyphicon-education"></span>
 								<label>Employement</label>
 								<select class="form-control" name="employement">
 									<option>Unemplyed</option>
@@ -240,6 +247,7 @@ else {
 								<div id="d18"></div>
 							</div>	
 							<div class="col-sm-4 form-group">
+								<span class="glyphicon glyphicon-phone"></span>
 								<label>Ph.No</label>
 								<input type="text" placeholder="phone number" name="pno" id="pno" class="form-control" value="<?php echo $pno;?>">
 								<?php if($errors["pno"]) { ?>
@@ -251,6 +259,7 @@ else {
 							<div class="col-sm-6 a2">
 								<center><h3>Residential Address</h3></center>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>Street</label>
 									<input type="text" placeholder="Street" id="street" name="street"  class="form-control" value="<?php echo $street;?>" >
 									<?php if($errors["street"]) { ?>
@@ -258,6 +267,7 @@ else {
 									<div id="d7"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>City</label>
 									<input type="text" placeholder="City" name="city" id="city"  class="form-control" value="<?php echo $city;?>">
 									<?php if($errors["city"]) { ?>
@@ -265,6 +275,7 @@ else {
 									<div id="d8"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>State</label>
 									<input type="text" placeholder="State" name="state" id="state"  class="form-control" value="<?php echo $state;?>">
 									<?php if($errors["state"]) { ?>
@@ -279,6 +290,7 @@ else {
 									<div id="d10"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-send"></span>
 									<label>Fax</label>
 									<input type="text" placeholder="Fax" name="fax" id="fax" class="form-control" value="<?php echo $fax;?>">
 									<?php if($errors["fax"]) { ?>
@@ -289,6 +301,7 @@ else {
 							<div class="col-sm-6 a2">
 								<center><h3>Office Address</h3></center>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>Street</label>
 									<input type="text" placeholder="Street" name="street1" id="street1"  class="form-control" value="<?php echo $street1;?>">
 									<?php if($errors["street1"]) { ?>
@@ -296,6 +309,7 @@ else {
 									<div id="d12"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>City</label>
 									<input type="text" placeholder="City" name="city1" id="city1"  class="form-control" value="<?php echo $city1;?>">
 									<?php if($errors["city1"]) { ?>
@@ -303,6 +317,7 @@ else {
 									<div id="d13"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-road"></span>
 									<label>State</label>
 									<input type="text" placeholder="State" name="state1" id="state1"  class="form-control" value="<?php echo $state1;?>">
 									<?php if($errors["state1"]) { ?>
@@ -317,6 +332,7 @@ else {
 									<div id="d15"></div>
 								</div>
 								<div class="col-sm-12 form-group">
+									<span class="glyphicon glyphicon-send"></span>
 									<label>Fax</label>
 									<input type="text" placeholder="Fax" name="fax1" id="fax1" class="form-control" value="<?php echo $fax1;?>">
 									<?php if($errors["fax1"]) { ?>
@@ -328,6 +344,7 @@ else {
 						</div><!--row 3 ending-->
 						<div class="row col-sm-12">
 							<div class="form-group col-sm-6">
+								<span class="glyphicon glyphicon-picture"></span>
 								<label for="upload">Upload Image:</label>
 								<input type='file' name="img1" onchange="readURL(this)" />
 								<img id="blah" src="<?php echo $img;?>" alt="your image" />-
@@ -335,6 +352,7 @@ else {
 									<lable class="flab1"><?php echo "<br/>" . $errors["img"]; $errors["img"]=null ?></lable><?php } ?>
 							</div>
 							<div class="form-group col-sm-5 c1">
+								<span class="glyphicon glyphicon-pencil"></span>
 								<label for="comment">Comment:</label>
 								<textarea class="form-control" rows="5" id="comment" name="text1" value="<?php echo $comment;?>"></textarea>
 								<?php if($errors["text1"]) { ?>
@@ -354,7 +372,7 @@ else {
 										<lable class="flab1"><?php echo "<br/>" . $errors["check"]; $errors["check"]=null ?></lable><?php } ?>
 							</div>
 						</div>
-					<center><button type="submit" name="submit" id="submit" value="submit" class="btn btn-lg btn-info">Submit</button></center>					
+					<center><button type="submit" name="submit" id="reg_submit" value="submit" class="btn btn-lg btn-info">Submit</button></center>					
 				</div>
 			</form> 
 		</div>
