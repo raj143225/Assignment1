@@ -1,24 +1,34 @@
 $(document).ready(function(){
-$('#first_name').blur();
-     var email = $("#email").val();
     var username = $("#username").val();
     var val = [];
-    val['formname']='#reg_form'
-    val['url']='formpost';
+    val['formname']='#reg_form';
+    val['url']='formpost.php';
     val['area']='div#d4';
     val['input']='first_name';
-    val['all']= '#my_form :input';
+    val['all_input']= '#my_form :input',
+
+
+// $('#first_name').blur(ajaxval(val));
+    /*$('#first_name').on('blur',function () {
+       console.log("hello");
+    });*/ 
+    $('#first_name').keydown(function(event) {
+        ajaxval(event, val);
+
+    });
 });
-  function ajaxval(val){
-		$.post( $(val['forname']).attr(val['url']),
-				$("val['all']").serializeArray(),
-				 success: function(data){
-				 console.log(data.first_name;)
-                 //$(val['area']).html(data);
-				 
-                 });
-	
-		};
+
+    function ajaxval(curObj, val){
+
+     
+        $.post( $(val['formname']).attr(val['url']),
+        $(val['all_input']).serializeArray(),
+                 function(response){
+                console.log(response);
+                //$(val['area']).html(data);
+            });
+
+    }
     
 /*  function ajaxval(e){
         $.post( $("#my_form").attr("login.php"),
