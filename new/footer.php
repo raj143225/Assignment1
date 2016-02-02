@@ -17,6 +17,6 @@
  <!--<script src="jsvalidation.js"></script>-->
  <script src="js/jqvalidation.js?12534"></script>
 <script src="js/img.js"></script>
-<script src="js/ajaxlogin.js"></script>
+<script src="js/ajaxlogin.js?t=" + Math.random()></script>
 </body>
 </html>

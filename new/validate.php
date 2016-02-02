@@ -96,7 +96,7 @@ function all_regular($name_regular){
 	global $errors;
 	foreach ($name_regular as $fields){
 		$value = trim($_POST[$fields]);
-		if (!preg_match("/^[a-zA-Z ]*$/",$value)) {
+		if (!preg_match('/^[a-zA-Z ]*$/',$value)) {
 			$errors[$fields] = ucfirst($fields) . " can have only letters "; 
 		}
 	}
