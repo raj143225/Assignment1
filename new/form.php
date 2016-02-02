@@ -145,7 +145,8 @@ else {
 			<center> Registration Form</center>
 		</div>
 		<div class="col-lg-12 well">
-	
+
+
 			<div class="row">
 				<form class="form" id="reg_form" action="form.php" method="post"  enctype="multipart/form-data">
 					<div class="col-sm-12">
@@ -155,11 +156,9 @@ else {
 								<label>Username</label>
 								<input type="text" placeholder="Username" name="username" id="username" class="form-control" value="<?php echo $username; ?>" >
 								 <?php if($errors["username"]) { ?>
-								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php } else{
-									?><?php }
-									?>
-								<div id="d1"></div>
+								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php }?>
 								<div  class="has-success" id="d1d1"></div>
+								<div  id="d1d1d1"></div>
 							</div>
 
 							<div class="col-sm-4 form-group icon">
@@ -178,6 +177,7 @@ else {
 								<lable class="flab1"><?php echo $errors["email"]; $errors["email"]=null ?></lable><?php } ?>
 								<div id="d3"></div>
 								<div  class="has-success" id="d3d3"></div>
+								<div id="d3d3d3"></div>
 							</div>
 						</div> 
 						<div class="row">
