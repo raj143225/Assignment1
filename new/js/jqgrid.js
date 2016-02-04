@@ -7,34 +7,43 @@
                         "Middle Name",
                         "Date of Birth","Email_id",
                         "Employement","Employer","Gender",
-                        "Marital-Status","Phone no","manage"
+                        "Marital-Status","Phone no","Manage"
                         ],
             colModel: [
-                { name: "id",align:"right",width:30},
-                { name: "first_name",width:60,editable:true},
-                { name: "last_name",width:60,editable:true},
-                { name: "middle_name",width:60,editable:true},
-                { name: "dob",width:60,editable:true},
+                { name: "id",align:"right",width:100},
+                { name: "first_name",width:70,editable:true},
+                { name: "last_name",width:70,editable:true},
+                { name: "middle_name",width:70,editable:true},
+                { name: "dob",width:70,editable:true},
                 { name: "email_id",width:200,editable:true},
-                { name: "employement",width:60,editable:true},
-                { name: "employer",width:60,editable:true},
-                { name: "gender",width:50,editable:true},
-                { name: "marital",width:60,editable:true},
+                { name: "employement",width:70,editable:true},
+                { name: "employer",width:70,editable:true},
+                { name: "gender",width:70,editable:true},
+                { name: "marital",width:70,editable:true},
                 { name: "phone",width:100,editable:true},
-                { name:'act',index:'act', width:150,sortable:false}
+                { name: "actions",width: 60,formatter: "actions",
+                    formatoptions: {
+                        keys: true,
+                        editOptions: {},
+                        addOptions: {},
+                        delOptions: {}
+                    }   }, 
             ],
-            pager: "#perpage",
+            
             rowNum: 10,
             rowList: [10,20],
             sortname: "id",
             sortorder: "asc",
-            loadonce:'true',
-            height: '500',
-            
+            search: true,
+            height: '100%',
+            width: '1030',
+            loadonce:true,
             viewrecords: true,
             gridview: true,
+            multiselect: true,
             caption: "Employee Details",
-            gridComplete: function(){
+            pager: "#perpage",
+          /*idComplete: function(){
                 var ids = jQuery("#list_records").jqGrid('getDataIDs');
                 for(var i=0;i<ids.length;i++){
                 var cl = ids[i];
@@ -44,11 +53,15 @@
                 se += ".jqGrid('saveRow','"+cl+"');\"  />"; 
                 ce = "<input style='height:22px;width:50px;' type='button' value='Cancel' onclick=\"jQuery('#list_records')";
                 ce += ".jqGrid('restoreRow','"+cl+"');\" />"; 
-                jQuery("#list_records").jqGrid('setRowData',ids[i],{act:be+se+ce});
+                de = "<input style='height:22px;width:80px;' type='submit' value='Delete' onclick=\"jQuery('#list_records')";
+                de += ".jqGrid('delRowData','"+cl+"');\" />"; 
+                jQuery("#list_records").jqGrid('setRowData',ids[i],{act:be+se+ce+de});
                 }   
-            },
-            editurl: 'adminupdate.php',
-            editurl: 'delete.php'
+            },*/
+            editurl: 'adminupdate.php'
+           //editurl: 'delete.php'
         });  
-            jQuery("#list_records").jqGrid('navGrid',"#list_records",{edit:false,search:true,add:false,del:false});     
+            
+            $('#list_records').navGrid('#perpage', { edit: true, add: false, del: true, search: true, refresh: true, view: false, position: "left", cloneToTop: true });
+
     });
