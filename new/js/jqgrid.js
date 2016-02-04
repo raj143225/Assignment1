@@ -7,12 +7,7 @@
                         "Middle Name",
                         "Date of Birth","Email_id",
                         "Employement","Employer","Gender",
-                        "Marital-Status","Phone no","Photo","Residential Street",
-                        "Residential City","Residential State",
-                        "Residential fax.",
-                        "Office Street",
-                        "Office City","Office State",
-                        "Office Fax.","Comment","manage"
+                        "Marital-Status","Phone no","manage"
                         ],
             colModel: [
                 { name: "id",align:"right",width:30},
@@ -26,16 +21,6 @@
                 { name: "gender",width:50,editable:true},
                 { name: "marital",width:60,editable:true},
                 { name: "phone",width:100,editable:true},
-                { name: "img",width:60},
-                { name: "street",width:100,editable:true},
-                { name: "city",width:100,editable:true},
-                { name: "state",width:100,editable:true},
-                { name: "fax",width:100,editable:true},
-                { name: "street1",width:100,editable:true},
-                { name: "city1",width:100,editable:true},
-                { name: "state1",width:100,editable:true},
-                { name: "fax1",width:100,editable:true},
-                { name: "comment",width:300},
                 { name:'act',index:'act', width:150,sortable:false}
             ],
             pager: "#perpage",
@@ -44,7 +29,8 @@
             sortname: "id",
             sortorder: "asc",
             loadonce:'true',
-            height: '100%',
+            height: '500',
+            
             viewrecords: true,
             gridview: true,
             caption: "Employee Details",

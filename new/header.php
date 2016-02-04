@@ -73,6 +73,10 @@
                         <a href="allusers.php">Users</a>
 
                     </li>
+                     <li>
+                        <a href="admin.php">Grids</a>
+
+                    </li>
                     <li>
                         <a href="logout.php">Logout</a>
                     </li>

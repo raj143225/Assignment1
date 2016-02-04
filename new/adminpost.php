@@ -32,12 +32,7 @@ while($row = mysqli_fetch_assoc($result)) {
 								,$row['email_id'],$row['employement']
 								,$row['employer'],$row['gender']
 								,$row['marital'],$row['ph_no']
-								,$row['img']
-								,$row['street'],$row['city']
-								,$row['state'],$row['fax']
-								,$row['street1'],$row['city1']
-								,$row['state1'],$row['fax1']
-								,$row['comment']);
+								);
 	$i++;
 }
 echo json_encode($responce);
