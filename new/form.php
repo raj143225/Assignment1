@@ -44,9 +44,9 @@ if(isset($_POST["submit"])){
 	if($uploadok == 1){
     		move_uploaded_file($_FILES["img1"]["tmp_name"], $target_file);
 	}//uploading image
-	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i/', $email)){
+	/*if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i/', $email)){
 		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
-	}//email format checking
+	}*///email format checking
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);	//for regular message check	
 	$name_fields_presence = array("username","password","email","first_name","last_name","dob","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob","text1");

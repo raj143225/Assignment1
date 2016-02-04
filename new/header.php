@@ -14,10 +14,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
    <link href="css/styleform.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <link href="css/business-casual.css" rel="stylesheet">
     <script src="js/img.js"></script>
-</head>
+</ehad>
 <body>
     <div class="brand">Mindfire Solutions</div>
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
@@ -48,15 +50,27 @@
                     <li>
                         <a href="form.php">Register</a>
                     </li><?php } ?>
-                    <li>
+                    
                      <?php
-                        if($_SESSION['id'])
+                        if($_SESSION['id'] && $_SESSION['admin']==0)
                         {
-                    ?>
+                    ?><li>
                         <a href="profile.php">Update</a>
                     </li>
                     <li>
                         <a href="detail.php">Profile</a>
+
+                    </li>
+                    <li>
+                        <a href="logout.php">Logout</a>
+                    </li>
+                    <?php } ?>
+                      <?php
+                        if($_SESSION['id'] && $_SESSION['admin']==1)
+                        {
+                    ?>
+                    <li>
+                        <a href="allusers.php">Users</a>
 
                     </li>
                     <li>

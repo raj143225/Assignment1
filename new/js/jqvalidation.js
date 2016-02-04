@@ -93,7 +93,11 @@ else{
                     password: password
                 },
                 success: function( response ) {
-                	if(response.id && response.username){
+                	if(response.id && response.username && response.admin==1){
+                  		window.location.replace('allusers.php');
+                  	}
+                  	else if(response.id && response.username)
+                  	{
                   		window.location.replace('detail.php');
                   	}
                   	else{
