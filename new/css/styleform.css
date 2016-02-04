@@ -168,3 +168,9 @@ body {
     font-size:50%;
     color: green; 
 }
+#agrid /*grid*/
+{
+      margin-left:10%;
+      margin-bottom: 5%; 
+      margin-right:10%;
+}
