@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
    <link href="css/styleform.css" rel="stylesheet">
-   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
    <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <link href="css/business-casual.css" rel="stylesheet">
@@ -95,20 +95,23 @@
         </div>
         <!-- /.container -->
     </nav>
-<div id="agrid">
+<div id="agrid" >
 <?php
 if($_SESSION['id']){
 ?>
-<table id="list_records"></table>
-<div id="perpage"></div>
+
+	<table id="list_records"></table>
+	<div id="perpage"></div><br>
+
 <?php
 }
 else{
 	header('Location: login.php');
 }
 ?>
-<div>
+</div>
 <!-- /.container -->
+
 <footer>
     <div class="container">
         <div class="row">
@@ -118,6 +121,7 @@ else{
         </div>
     </div>
 </footer>
+
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
