@@ -2,7 +2,6 @@ $(document).ready(function(){
 $('#email').keyup(function(e){
 	var email = $("#email").val();
     var username = $("#username").val();
-	
 	$.ajax({
                 method: 'POST',
                 url: 'formpost.php',
@@ -47,8 +46,6 @@ $('#email').keyup(function(e){
                     }
 
             });
-
-
 });
 });
 $(document).ready(function(){

@@ -55,7 +55,8 @@
             multiselect: true,
             caption: "Employee Details",
             editurl: 'adminupdate.php',
-            subGrid: true, subgridtype: 'json', // set the subgrid type to json
+            subGrid: true, 
+            subgridtype: 'json', // set the subgrid type to json
             subGridUrl: "sub.php",
             //shrinkToFit: false,
             //altRows: true,
@@ -68,8 +69,12 @@
                         params: false
                        
             }],
-            
-           // editurl: 'subgrid.php',
+             pager: "#perpage",
+        });  
+            $('#list_records').jqGrid('filterToolbar');
+            $('#list_records').navGrid('#perpage', { edit: true, add: false, del: true, search: true, refresh: true, view: false, position: "left", cloneToTop: true });
+});
+ // editurl: 'subgrid.php',
             /*success: function(msg) {
                               if(msg.not_found == 'true') {
                                     var error = '<div class="alert-danger" role="alert">' +
@@ -81,8 +86,3 @@
                               }
                         }*/
            //editurl: 'delete.php'
-             pager: "#perpage",
-        });  
-            $('#list_records').jqGrid('filterToolbar');
-            $('#list_records').navGrid('#perpage', { edit: true, add: false, del: true, search: true, refresh: true, view: false, position: "left", cloneToTop: true });
-});

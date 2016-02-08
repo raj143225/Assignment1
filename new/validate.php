@@ -4,7 +4,7 @@
 	Input Parameters: Input value and Max length value
 	Return Value: True if its is more than maximum length or false
 */
-function has_max_length($value,$max){
+function has_max_length($value,$max) {
 	return strlen($value) <= $max;
 }
 /*
@@ -13,7 +13,7 @@ function has_max_length($value,$max){
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function for finding length if each element and comapares with maximum value
 */
-function validate_max_lengths($fields_max_length){
+function validate_max_lengths($fields_max_length) {
 	global $errors;
 	foreach($fields_max_length as $field => $max){
 		$value=trim($_POST[$field]);
@@ -27,7 +27,7 @@ function validate_max_lengths($fields_max_length){
 	Input Parameters: Input value and Minimum length value
 	Return Value: True if its is less than than minimum length or true
 */
-function has_min_length($value,$min){
+function has_min_length($value,$min) {
 	return strlen($value) < $min;
 }
 /*
@@ -36,7 +36,7 @@ function has_min_length($value,$min){
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function for finding length if each element and comapares with manimum value
 */
-function validate_min_lengths($fields_min_length){
+function validate_min_lengths($fields_min_length) {
 	global $errors;
 	foreach ($fields_min_length as $field => $min) {
 		$value = trim($_POST[$field]);
@@ -50,7 +50,7 @@ function validate_min_lengths($fields_min_length){
 	Input Parameters: input value
 	Return Value: True if its is empty or false
 */
-function has_presence($value){
+function has_presence($value) {
 	return isset($value) && $value !== "";
 }
 /*
@@ -59,9 +59,9 @@ function has_presence($value){
 	Return Value: Stores error message in array of errors if there is any error
 	Note:It calls another function to find whether the each input value is empty or not
 */
-function all_prestnt($name_fields_presence){
+function all_prestnt($name_fields_presence) {
 	global $errors;
-	foreach ($name_fields_presence as $field){
+	foreach ($name_fields_presence as $field) {
 		$value = trim($_POST[$field]);
 		if(!has_presence($value)){
 			$errors[$field] = ucfirst($field) . " cannot be blank ";
@@ -73,13 +73,13 @@ function all_prestnt($name_fields_presence){
 	Input Parameters: Array of values, that array contains all errors
 	Return Value: a variable which contains all the errors
 */
-function form_errors($errors = array()){
+function form_errors($errors = array()) {
 	$output = "";
 	if(!empty($errors)){
 		$output = "<div class=\"error\">";
 		$output .= "Please fix the following errors:";
 		$output .= "<ul>";
-		foreach($errors as $key => $error){
+		foreach($errors as $key => $error) {
 			$output .= "<li>{$error}</li>";
 		}
 		$output .= "</ul>";
@@ -92,9 +92,9 @@ function form_errors($errors = array()){
 	Input Parameters: Array of values, that array contains input type names
 	Return Value: Stores error message in array of errors if there is any error
 */
-function all_regular($name_regular){
+function all_regular($name_regular) {
 	global $errors;
-	foreach ($name_regular as $fields){
+	foreach ($name_regular as $fields) {
 		$value = trim($_POST[$fields]);
 		if (!preg_match('/^[a-zA-Z ]*$/',$value)) {
 			$errors[$fields] = ucfirst($fields) . " can have only letters "; 

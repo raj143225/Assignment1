@@ -3,23 +3,23 @@ session_start();
 require 'dbinfo.php';
 	$username = trim($_POST["username"]);
 	$password = trim($_POST["password"]);
-	if($username == ""){
+	if($username == "") {
 		$_SESSION['blank_user'] = "Username can't be blank";//if empty username
 	}
-	if($password == ""){
+	if($password == "") {
 		$_SESSION['blank_pass'] = "Password can't be blank";//if empty password
 	}
-	else{
+	else {
 		$password = md5($password);
 		$query1 = "SELECT id,admin FROM reg where user_name='$username' AND password='$password' And activation='1'";
 		$result = mysqli_query($connection, $query1);
 		$rows = mysqli_fetch_assoc($result);
-		if($rows['id']){
+		if($rows['id']) {
 			$_SESSION["id"] = $rows["id"];
 			$_SESSION["admin"] = $rows["admin"];
 			$_SESSION["username"] = $username;
 			//header("Location: detail.php");
-			}
+		}
 		else {
 			$query2="SELECT user_name FROM reg where user_name='$username' AND password='$password'";
 		    $result1=mysqli_query($connection, $query2);
@@ -27,12 +27,11 @@ require 'dbinfo.php';
 		    if($rows1['user_name']){
 				$_SESSION['wrong'] = "Not activated";//If not activated because of some issue
 			}
-			else{
+			else {
 				$_SESSION['wrong'] = "Wrong username and password";//If username or password is wrong
 			}
 		}
 	}
 	//$response["username"]= $username;
 	echo json_encode($_SESSION);				
- 
 ?>

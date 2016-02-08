@@ -1,6 +1,5 @@
 <?php 
 require 'dbinfo.php';
-	
 	if($_POST['nd_'] && $_POST['id'])
 	{
 	$id=$_POST['id'];
@@ -11,9 +10,9 @@ require 'dbinfo.php';
 	while($row = mysqli_fetch_assoc($result)) {
 	$responce->rows[$i]['id']=$row['id'];
 	$responce->rows[$i]['cell']=array($row['street'],$row['city']
-								,$row['state'],$row['fax'],$row['street1']
-								,$row['city1'],$row['state1'],$row['fax1']
-								);
+									,$row['state'],$row['fax'],$row['street1']
+									,$row['city1'],$row['state1'],$row['fax1']
+									);
 	$i++;
 	}
 }

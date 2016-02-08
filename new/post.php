@@ -5,7 +5,7 @@ require 'validate.php';
 require 'mail.php';
 session_start();
 $errors=array();
-if(isset($_POST["submit"])){
+if(isset($_POST["submit"])) {
 	$username = trim($_POST["username"]);
 	$password  = md5(trim($_POST["password"]));//encrypting password
 	$email = trim($_POST["email"]);
@@ -75,70 +75,67 @@ if(isset($_POST["submit"])){
    				//creating new unique activation code
 		$activate = md5(uniqid(rand(), true));
 		$q="INSERT INTO reg (user_name, 
-			password, 
-			email_id, 
-			first_name, 
-			last_name, 
-			middle_name, 
-			ph_no, 
-			gender, 
-			marital, 
-			employement, 
-			employer, 
-			street, 
-			city, 
-			state, 
-			zip, 
-			fax, 
-			street1, 
-			city1, 
-			state1, 
-			zip1, 
-			fax1, 
-			comment, 
-			dob, 
-			img, 
-			check1,
-			act_com)                
-VALUES ('$username',
-	'$password', 
-	'$email', 
-	'$first_name', 
-	'$last_name', 
-	'$middle_name', 
-	'$pno', 
-	'$gender', 
-	'$marital', 
-	'$employement', 
-	'$employer', 
-	'$street', 
-	'$city', 
-	'$state', 
-	'$zip', 
-	'$fax', 
-	'$street1', 
-	'$city1', 
-	'$state1', 
-	'$zip1', 
-	'$fax1', 
-	'$comment', 
-	'$dob', 
-	'$img_var', 
-	'$check',
-	'$activate')";
-if (mysqli_query($connection, $q)) {	
+							password, 
+							email_id, 
+							first_name, 
+							last_name, 
+							middle_name, 
+							ph_no, 
+							gender, 
+							marital, 
+							employement, 
+							employer, 
+							street, 
+							city, 
+							state, 
+							zip, 
+							fax, 
+							street1, 
+							city1, 
+							state1, 
+							zip1, 
+							fax1, 
+							comment, 
+							dob, 
+							img, 
+							check1,
+							act_com)                
+				VALUES ('$username',
+					'$password', 
+					'$email', 
+					'$first_name', 
+					'$last_name', 
+					'$middle_name', 
+					'$pno', 
+					'$gender', 
+					'$marital', 
+					'$employement', 
+					'$employer', 
+					'$street', 
+					'$city', 
+					'$state', 
+					'$zip', 
+					'$fax', 
+					'$street1', 
+					'$city1', 
+					'$state1', 
+					'$zip1', 
+					'$fax1', 
+					'$comment', 
+					'$dob', 
+					'$img_var', 
+					'$check',
+					'$activate')";
+		if (mysqli_query($connection, $q)) {	
 
-	$subject = "Activation mail";
-	$var1 = mymail1($email,$subject,$activate);				
-	$_SESSION['active_msg'] = "Activation link sent to your mail";
-	header("Location:login.php");
-} 
-else {
-	?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
-}
-
-
-			}
-			
+			$subject = "Activation mail";
+			$var1 = mymail1($email,$subject,$activate);				
+			$_SESSION['active_msg'] = "Activation link sent to your mail";
+			header("Location:login.php");
+		} 
+		else {
+			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
-		?>
+	}	
+}
+?>

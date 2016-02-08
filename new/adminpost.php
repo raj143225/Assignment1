@@ -6,12 +6,10 @@ $sidx = $_POST['sidx'];
 $sord = $_POST['sord']; 
 $search_field = $_POST['searchField'];
 $search_string = $_POST['searchString'];
-
 if(!$sidx) $sidx =1; 
 $query = "SELECT COUNT(*) AS count FROM reg";
 $result = mysqli_query($connection, $query); 
 $row = mysqli_fetch_assoc($result); 
-
 $count = $row['count']; 
 if( $count > 0 ) { 
     $total_pages = ceil($count/$limit); 
@@ -30,18 +28,10 @@ if($search_string && $search_field) {
 		$responce['not_found']= "True";
 	}
 }
-else
-{
+else {
 	$sql = "SELECT * FROM reg ORDER BY $sidx $sord LIMIT $start , $limit"; 
 }
 $result = mysqli_query($connection,$sql );
-/*$responce->page = $page;
-$responce->total = $total_pages;
-$responce->records = $count;
-$responce->sidxx = $sidx;
-$responce->sords = $sord;
-$responce->startt = $start;
-$responce->lm = $limit;*/
 $i=0;
 while($row = mysqli_fetch_assoc($result)) {
 	if($row['dob'] == '0000-00-00') {
@@ -49,12 +39,12 @@ while($row = mysqli_fetch_assoc($result)) {
 		}
 	$responce->rows[$i]['id']=$row['id'];
 	$responce->rows[$i]['cell']=array($row['id'],$row['first_name']
-								,$row['last_name'],$row['middle_name']
-								,$row['dob']
-								,$row['email_id'],$row['employement']
-								,$row['employer'],$row['gender']
-								,$row['marital'],$row['ph_no']
-								);
+									,$row['last_name'],$row['middle_name']
+									,$row['dob']
+									,$row['email_id'],$row['employement']
+									,$row['employer'],$row['gender']
+									,$row['marital'],$row['ph_no']
+									);
 	$i++;
 }
 echo json_encode($responce);

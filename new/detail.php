@@ -2,7 +2,7 @@
 session_start();
 require 'header.php';
 require 'dbinfo.php';
-if($_SESSION['id']){
+if($_SESSION['id']) {
 	$id=$_SESSION['id'];
 	$query1="SELECT * FROM reg WHERE id='$id'";
 	$result=mysqli_query($connection, $query1);
@@ -37,7 +37,7 @@ if($_SESSION['id']){
 			$_SESSION['con_error']= "Error: " . $q . "<br>" . mysqli_error($connection);
 		}
 }
-else{
+else {
 	header("Location: login.php");
 }
 ?>

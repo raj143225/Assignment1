@@ -4,7 +4,7 @@ require 'dbinfo.php';
 require 'validate.php';
 session_start();
 $errors = array();
-if(isset($_POST["update"])){
+if(isset($_POST["update"])) {
 	$id = $_SESSION['id'];
 	$username = trim($_POST["username"]);
 	$email = trim($_POST["email"]);
@@ -28,7 +28,7 @@ if(isset($_POST["update"])){
 	$fax1 = trim($_POST["fax1"]);
 	$comment = addslashes(trim($_POST["text1"]));
 	//POST values
-	if($_FILES["img"]["name"] == ""){
+	if($_FILES["img"]["name"] == "") {
 		$query2 = "SELECT img FROM reg WHERE id='$_SESSION[id]'";
 		$result1 = mysqli_query($connection, $query2);
 		$rows1 = mysqli_fetch_assoc($result1);
@@ -36,7 +36,7 @@ if(isset($_POST["update"])){
 			$img_var = trim($rows1['img']);	
     	}	//Old Imag
      }
-    else{
+    else {
     	$target_dir = img_path;
 		$target_file = $target_dir . basename($_FILES["img"]["name"]);
 		$img_var = basename($_FILES["img"]["name"]);
@@ -47,10 +47,10 @@ if(isset($_POST["update"])){
     		$errors["img"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     		$uploadOk = 0;
 		}
-		if($uploadOk == 1){
+		if($uploadOk == 1) {
     		move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 		}
-		if($_FILES["img"]["name"] == ""){
+		if($_FILES["img"]["name"] == "") {
 			$query2="SELECT img FROM reg WHERE id='$_SESSION[id]'";
 			$result1=mysqli_query($connection, $query2);
 			$rows1=mysqli_fetch_assoc($result1);
@@ -69,12 +69,12 @@ if(isset($_POST["update"])){
 			//max length check
 	$fields_min_length = array("username" => 8,"email" => 8,"pno" => 9);	
 	validate_min_lengths($fields_min_length);
-	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){
+	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)) {
 		$errors["email"] = " wrong" . ucfirst("email") .  " pattern ";
 	}//email format checking//for email varification;
 	$output = form_errors($errors);
    //end of validations
-	if(!$output){
+	if(!$output) {
    		$activate=md5(uniqid(rand(), true));
    		//creating new unique activation code
 		$q="UPDATE reg SET user_name='$username', 
@@ -99,8 +99,6 @@ if(isset($_POST["update"])){
 		comment='$comment', 
 		dob='$dob', 
 		img='$img_var' WHERE id='$id'";
-
-
 		if (mysqli_query($connection, $q)) {		
 			$_SESSION["succ"] = "Profile updated successfully";
 			//header("Location:detail.php");
@@ -111,13 +109,13 @@ if(isset($_POST["update"])){
 	}	//for $output
 }//for submit
 		 //updation 
-		if($_SESSION['id']){
+		if($_SESSION['id']) {
 			$id=$_SESSION['id'];
 			$query1="SELECT * FROM reg WHERE id='$id'";
 			$result=mysqli_query($connection, $query1);
 			$rows=mysqli_fetch_assoc($result); 
 		}
-		else{
+		else {
 			header("Location: login.php");
 		}
 ?>

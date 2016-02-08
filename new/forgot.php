@@ -3,10 +3,10 @@ require 'header.php';
 require 'dbinfo.php';
 require 'mail.php';
 session_start();	
-if(isset($_POST['send'])){
+if(isset($_POST['send'])) {
 	$email = trim($_POST['email']);
 	$password = md5(trim($_POST["password"]));
-	if((isset($_POST['email']) && $_POST['email'] !== "") && (isset($_POST['password']) && $_POST['password'] !== "")){
+	if((isset($_POST['email']) && $_POST['email'] !== "") && (isset($_POST['password']) && $_POST['password'] !== "")) {
 		$activate=md5(uniqid(rand(), true));
 		$q1="SELECT IF(EXISTS(SELECT id FROM reg WHERE email_id='$email'),1,0)";
 		$val=mysqli_query($connection,$q1);
@@ -19,18 +19,17 @@ if(isset($_POST['send'])){
 				mymail1($email,"click on the below link to login",$activate);
 				$_SESSION['re_act'] = "Check your mail for Re-activation";
 			}
-			else{
+			else {
 				$_SESSION['wrong_email'] = "Somthing Wrong"; 
 			}
 		}
 	}
-	else{
-		if($email == ""){
+	else {
+		if($email == "") {
 			$_SESSION['blank_email'] = "email can't be blank";
 		}
-		if($_POST["password"] == ""){
+		if($_POST["password"] == "") {
 			$_SESSION['blank_passs'] = "Password can't be blank";
-			
 		} 
 	}
 }

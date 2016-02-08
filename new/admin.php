@@ -18,7 +18,6 @@
    <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <link href="css/business-casual.css" rel="stylesheet">
-    <script src="js/img.js"></script>
 </ehad>
 <body>
     <div class="brand">Mindfire Solutions</div>
@@ -121,7 +120,6 @@ else{
         </div>
     </div>
 </footer>
-
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -133,9 +131,6 @@ else{
 <script src="js/ajaxlogin.js?t=" + Math.random()></script>
 <script src="js/ajaxfunction.js?t=" + Math.random()></script>
 <!--for grid view-->
-
-
-
 <script src="http://trirand.com/blog/jqgrid/js/i18n/grid.locale-en.js?t=" + Math.random()></script>
 <script src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js?t=" + Math.random()></script>
 <script src="js/jqgrid.js?t=" + Math.random()></script>

@@ -14,10 +14,12 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Script to Activate the Carousel -->
- <!--<script src="jsvalidation.js"></script>-->
  <script src="js/jqvalidation.js?12534"></script>
+ <!--JQuery validation for the registration,login,update and forgot inputs-->
 <script src="js/img.js"></script>
+<!--for the image preview while uploding-->
 <script src="js/ajaxlogin.js?t=" + Math.random()></script>
+<!--for login(through ajax call)-->
 <script src="js/ajaxfunction.js?t=" + Math.random()></script>
 <!--for grid view-->
 

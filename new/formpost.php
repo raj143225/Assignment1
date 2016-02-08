@@ -1,9 +1,7 @@
 <?php
 require 'dbinfo.php';
 require 'validate.php';
-
-$errors=array();
-
+	$errors=array();//array for to show error messages
 	$username = trim($_POST["username"]);
 	$password  = md5(trim($_POST["password"]));//encrypting password
 	$email = trim($_POST["email"]);
@@ -30,6 +28,7 @@ $errors=array();
 	$check = trim($_POST["check"]);
 	//POST values
 	$target_dir = img_path;
+	//image path where to store and retrive
 	$target_file = $target_dir . basename($_FILES["img1"]["name"]);
 	$img_var = basename($_FILES["img1"]["name"]);
 	$uploadOk = 1;
@@ -45,11 +44,11 @@ $errors=array();
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);	//for regular message check	
 	$name_fields_presence = array("username","password","email","first_name","last_name","dob","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob","text1");
-	all_prestnt($name_fields_presence);	//values are present or not
+	all_prestnt($name_fields_presence);	//function call to check all values are present or not in all array inputs
 	$fields_max_length = array("username"=>20,"password"=>20,"first_name"=>20,"last_name"=>20,"pno"=>15);
-	validate_max_lengths($fields_max_length);		//max length check
+	validate_max_lengths($fields_max_length);		//function call to check max length check all array inputs
 	$fields_min_length = array("username"=>8,"password"=>8,"email"=>8,"pno"=>9);	
-	validate_min_lengths($fields_min_length);
+	validate_min_lengths($fields_min_length);//function call to check min length check all array inputs
 	$name_fields_presence = array("username","password","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob");
 	all_prestnt($name_fields_presence);
 	if (!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $email)){

@@ -1,8 +1,7 @@
 <?php
 	require 'dbinfo.php';
-
-			$respnse=array();
-			$id=trim($_POST['id']);
+			$respnse = array();
+			$id = trim($_POST['id']);
 			$username = trim($_POST["user_name"]);
 			$email = trim($_POST["email_id"]);
 			$first_name = trim($_POST["first_name"]);
@@ -22,61 +21,40 @@
 			$city1 = trim($_POST["city1"]);
 			$state1 = trim($_POST["state1"]);
 			$fax1 = trim($_POST["fax1"]);
-				if($_POST['oper'] == 'edit') {
+				if($_POST['oper'] == 'edit') {//Updating user details
 				$q = "UPDATE reg SET 
-					
-					first_name='$first_name', 
-					last_name='$last_name', 
-					middle_name='$middle_name' 
-					 WHERE id='$id'";
-					$response['query']=$q;
-					if($result=mysqli_query($connection, $q)) {
-						$response['value']=$q;
+					first_name = '$first_name', 
+					last_name = '$last_name', 
+					middle_name = '$middle_name' 
+					 WHERE id = '$id'";
+					$response['query'] = $q;
+					if($result = mysqli_query($connection, $q)) {
+						$response['value'] = $q;
 					}
 				}
 				//$response['value']="i am here";
 				else if($_POST['oper'] == 'del') {
-					$response['value']="i am here";
-					$string=$_POST['id'];
+					$response['value'] = "i am here";
+					$string = $_POST['id'];
 					$explode = explode(',', $string);
 					foreach ($explode as $key){
 						$arrIntegers[] = (int) $key;
 					}
-					$count=count($arrIntegers);
-					$response['count']=$count;
-					if ($count>1){
-						$response['v']="i am inside";
-						for($i=0; $i<$count; $i++){
-							$response['array']=$arrIntegers[$i];
+					$count = count($arrIntegers);
+					$response['count'] = $count;
+					if ($count > 1){
+						for($i=0; $i<$count; $i++) {
 							$q = "DELETE FROM reg WHERE id='$arrIntegers[$i]'";
 							mysqli_query($connection, $q);
 						}
 					}
 					else {
 						$q = "DELETE FROM reg WHERE id='$id'";
-						$response['query']=$q;
-						if($result=mysqli_query($connection, $q)){
-							$response['value']=$q;
+						$response['query'] = $q;
+						if($result = mysqli_query($connection, $q)){
+							$response['value'] = $q;
 						}
 					}
 				}
-				/*<?php
-
-				$string = "1,2,3,4,5"; 
-				$explode = explode(',', $string);
-				foreach ($explode as $key)
-				$arrIntegers[] = (int) $key;
-				echo $arrIntegers[1];
-				var_dump($arrIntegers);
-?>*/
-				/*else if($_POST['oper'] == 'del')
-				{
-					$q = "DELETE FROM reg WHERE id='$id'";
-					$response['query']=$q;
-					if($result=mysqli_query($connection, $q))
-					{
-						$response['value']=$q;
-					}
-				}*/
-				echo json_encode($response);
+				echo json_encode($response);//returning values to the jq grid after certain operation
 ?>

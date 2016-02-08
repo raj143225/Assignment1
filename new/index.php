@@ -5,9 +5,9 @@ require 'validate.php';
 require 'mail.php';
 session_start();
 $errors=array();
-if(isset($_POST["submit"])){
+if(isset($_POST["submit"])) {
 	$username = trim($_POST["username"]);
-	$password  = md5(trim($_POST["password"]));//encrypting password
+	$password  = md5(trim($_POST["password"]));//encrypting password to 32 bit
 	$email = trim($_POST["email"]);
 	$first_name = trim($_POST["first_name"]);
 	$last_name = trim($_POST["last_name"]);
@@ -32,12 +32,13 @@ if(isset($_POST["submit"])){
 	$check = trim($_POST["check"]);
 	//POST values
 	$target_dir = img_path;
+	//image pat where to store and retrive
 	$target_file = $target_dir . basename($_FILES["img1"]["name"]);
 	$img_var = basename($_FILES["img1"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" ) {
+	&& $imageFileType != "gif" ) {//checking wheather uploading image is image or not
     	$errors["img"]="Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     	$uploadOk = 0;
 	}
@@ -49,104 +50,103 @@ if(isset($_POST["submit"])){
 	}*///email format checking
 	$name_regular = array("first_name","last_name","middle_name");
 	all_regular($name_regular);	//for regular message check	
-	$name_fields_presence = array("username","password","email","first_name","last_name","dob","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob","text1");
-	all_prestnt($name_fields_presence);	//values are present or not
+	//$name_fields_presence = array("username","password","email","first_name","last_name","dob","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob","text1");
+	//all_prestnt($name_fields_presence);	//function call to check all values are present or not in all array inputs
 	$fields_max_length = array("username"=>20,"password"=>20,"first_name"=>20,"last_name"=>20,"pno"=>15);
-	validate_max_lengths($fields_max_length);		//max length check
+	validate_max_lengths($fields_max_length);//function call to check max length check all array inputs
 	$fields_min_length = array("username"=>8,"password"=>8,"email"=>8,"pno"=>9);	
-	validate_min_lengths($fields_min_length);
+	validate_min_lengths($fields_min_length);//function call to check min length check all array inputs
 	$name_fields_presence = array("username","password","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob");
 	all_prestnt($name_fields_presence);
-	if($check==""){	
+	//function call to check all values are present or not in all array inputs
+	if($check=="") {	
 		$errors["check"] = ucfirst("check") . " needs to done to register ";
 	}		//for email varification;
 	$q1="SELECT id FROM reg where email_id='$email'";
 	$res=mysqli_query($connection,$q1);
-	if($rows=mysqli_fetch_assoc($res)){
+	if($rows=mysqli_fetch_assoc($res)) {
 		$errors["email"] = ucfirst("email") . "already used";
 	}//for username verification
 	$q2="SELECT id FROM reg where user_name='$username'";
 	$res2=mysqli_query($connection,$q2);
-	if($rows=mysqli_fetch_assoc($res2)){
+	if($rows=mysqli_fetch_assoc($res2)) {
 		$errors["username"] = ucfirst("username") . "already used";
 	}
 	$output=form_errors($errors);//end of validations
-	if(!$output){
+	if(!$output) {
    				//creating new unique activation code
 		$activate = md5(uniqid(rand(), true));
 		$q="INSERT INTO reg (user_name, 
-			password, 
-			email_id, 
-			first_name, 
-			last_name, 
-			middle_name, 
-			ph_no, 
-			gender, 
-			marital, 
-			employement, 
-			employer, 
-			street, 
-			city, 
-			state, 
-			zip, 
-			fax, 
-			street1, 
-			city1, 
-			state1, 
-			zip1, 
-			fax1, 
-			comment, 
-			dob, 
-			img, 
-			check1,
-			act_com)                
-VALUES ('$username',
-	'$password', 
-	'$email', 
-	'$first_name', 
-	'$last_name', 
-	'$middle_name', 
-	'$pno', 
-	'$gender', 
-	'$marital', 
-	'$employement', 
-	'$employer', 
-	'$street', 
-	'$city', 
-	'$state', 
-	'$zip', 
-	'$fax', 
-	'$street1', 
-	'$city1', 
-	'$state1', 
-	'$zip1', 
-	'$fax1', 
-	'$comment', 
-	'$dob', 
-	'$img_var', 
-	'$check',
-	'$activate')";
-if (mysqli_query($connection, $q)) {	
+						password, 
+						email_id, 
+						first_name, 
+						last_name, 
+						middle_name, 
+						ph_no, 
+						gender, 
+						marital, 
+						employement, 
+						employer, 
+						street, 
+						city, 
+						state, 
+						zip, 
+						fax, 
+						street1, 
+						city1, 
+						state1, 
+						zip1, 
+						fax1, 
+						comment, 
+						dob, 
+						img, 
+						check1,
+						act_com)                
+				VALUES ('$username',
+						'$password', 
+						'$email', 
+						'$first_name', 
+						'$last_name', 
+						'$middle_name', 
+						'$pno', 
+						'$gender', 
+						'$marital', 
+						'$employement', 
+						'$employer', 
+						'$street', 
+						'$city', 
+						'$state', 
+						'$zip', 
+						'$fax', 
+						'$street1', 
+						'$city1', 
+						'$state1', 
+						'$zip1', 
+						'$fax1', 
+						'$comment', 
+						'$dob', 
+						'$img_var', 
+						'$check',
+						'$activate')";
+		if (mysqli_query($connection, $q)) {	
 
-	$subject = "Activation mail";
-	$var1 = mymail1($email,$subject,$activate);				
-	$_SESSION['active_msg'] = "Activation link sent to your mail";
-	header("Location:login.php");
-} 
-else {
-	?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
-}
+			$subject = "Activation mail";
+			$var1 = mymail1($email,$subject,$activate);				
+			$_SESSION['active_msg'] = "Activation link sent to your mail";
+			header("Location:login.php");
+		} 
+		else {
+			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
+		}
 	}
 			
-		}
+}
 		?>
 		<div id="ackr"></div>
 		<div class="col-lg-12 h1 well">
 			<center> Registration Form</center>
 		</div>
 		<div class="col-lg-12 well">
-
-
 			<div class="row">
 				<form class="form" id="reg_form" action="form.php" method="post"  enctype="multipart/form-data">
 					<div class="col-sm-12">
