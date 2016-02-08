@@ -14,19 +14,7 @@
                 { name: "first_name",width:70,editable:true},
                 { name: "last_name",width:70,editable:true},
                 { name: "middle_name",width:70,editable:true},
-                { name: "dob",edittype:"text",width:70,editable:truesearchoptions: {
-                            // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
-                            // use it to place a third party control to customize the toolbar
-                            dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'orderDate_datePicker',
-                                    dateFormat: 'yy-mm-dd',
-                                    //minDate: new Date(2010, 0, 1),
-                                    maxDate: new Date(2020, 0, 1),
-                                    showOn: 'focus'
-                                });
-                            }
-                        }},
+                { name: "dob",edittype:"text",width:70},
                 { name: "email_id",width:150,editable:true},
                 { name: "employement",width:70,editable:true},
                 { name: "employer",width:70,editable:true},
@@ -41,7 +29,6 @@
                         delOptions: {}
                     }   } 
             ],
-            
             rowNum: 10,
             rowList: [10,20],
             sortname: "id",
@@ -67,22 +54,9 @@
                        // editable [true,true,true,true,true,true,true,true],
                         align: ["center","center","center","center","center","center","center","center"],
                         params: false
-                       
             }],
              pager: "#perpage",
         });  
             $('#list_records').jqGrid('filterToolbar');
             $('#list_records').navGrid('#perpage', { edit: true, add: false, del: true, search: true, refresh: true, view: false, position: "left", cloneToTop: true });
 });
- // editurl: 'subgrid.php',
-            /*success: function(msg) {
-                              if(msg.not_found == 'true') {
-                                    var error = '<div class="alert-danger" role="alert">' +
-                                    '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
-                                    '<span class="sr-only">Error:</span>' +
-                                    'No Results Found' +
-                                    '</div>';
-                                  $("div#warning").html(error);
-                              }
-                        }*/
-           //editurl: 'delete.php'
