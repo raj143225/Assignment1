@@ -8,7 +8,7 @@ if (!$connection) {
 	echo "Connection Problem";
 }
 //Change the path according to your project path
-DEFINE('URL', 'http://localhost/project/Assignment1/new');
+DEFINE('URL', 'http://localhost/project/Assignment1');
 //Change the path according to your project path
-DEFINE('img_path','/var/www/html/project/Assignment1/new/img/');
+DEFINE('img_path','/var/www/html/project/Assignment1/img/');
 ?>
