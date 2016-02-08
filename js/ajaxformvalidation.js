@@ -79,12 +79,6 @@ $('#username').keyup(function(e){
                         $("div#d1d1").html(error);
                          var icon = ' <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true">' + '</span>';
                         $("div#d1d1").append(icon);
-                      
-                       /*var val=0;
-                       var interval = setInterval(function(){
-                        val = val+1;
-                        $("div#3d3d").progressbar({ value: val }, 50);
-                       })*/
                      }
                      else if(response.username === "Username cannot be blank ")
                      {
@@ -99,7 +93,6 @@ $('#username').keyup(function(e){
                         $("div#d1d1").append(icon);
                      }
                       else{
-
                              var icon = '<span class="has-success glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">' + '</span>';
                             $("div#d1d1").html(icon);
                             var progress_bar = '<div id="progress" class="progress hiddenDiv">' + 
@@ -121,16 +114,3 @@ $('#username').keydown(function(e){
 });
 });
 
-/*else{
-		$.post( $("#my_form").attr("login.php"),
-				$("#my_form :input").serializeArray(),
-				 function(data){
-				 	//alert(data);
-				 	$("div#ack").html(data);
-				 });
-	
-		$("#my_form").submit(function(){
-					$("div#ack").text("Success");
-			return true;	
-		});
-	}*/

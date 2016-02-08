@@ -18,7 +18,7 @@
  <!--JQuery validation for the registration,login,update and forgot inputs-->
 <script src="js/img.js"></script>
 <!--for the image preview while uploding-->
-<script src="js/ajaxlogin.js?t=" + Math.random()></script>
+<script src="js/ajaxformvalidation.js?t=" + Math.random()></script>
 <!--for login(through ajax call)-->
 <script src="js/ajaxfunction.js?t=" + Math.random()></script>
 <!--for grid view-->
