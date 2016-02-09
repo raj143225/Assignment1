@@ -107,6 +107,10 @@
 			}
 			return false;
 		}
+		public function privilageView($user) {
+			require 'dbinfo.php';
+			$query ="";
+		}
 		/*public function editRole($id,$type) {
 			$query="UPDATE user_types SET type='$type' WHERE id='$id'";
 			$result = mysqli_query($query);

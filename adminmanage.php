@@ -3,7 +3,6 @@
 		require 'dbinfo.php';
 		require 'class.php';
 		$objName = new All_operaions();
-		//else if($_POST['delete']=="delete"){}
 ?>	
 		<div class="col-lg-12 well">
 			<center><label><h4>Roles<h4></label></center>
@@ -18,7 +17,7 @@
 										$value = $objName->viewRoles();
 										for($i=0; $i<count($value); $i++) {
 										?> <option><?php echo $value[$i]; ?></option> <?php
-									}
+										}
 									?>
 								</select>
 							</div>
@@ -58,7 +57,7 @@
 										$value = $objName->viewOperation();
 										for($i=0; $i<count($value); $i++) {
 										?> <option><?php echo $value[$i]; ?></option> <?php
-									}
+										}
 									?>
 								</select>
 							</div>
@@ -83,7 +82,7 @@
 					</div>	
 				</form> 
 			</div>
-		</div><!---->
+		</div><!--operations-->
 		<div class="col-lg-12 well">
 			<center><label><h4>Resources<h4></label></center>
 			<div class="row">
@@ -97,7 +96,7 @@
 										$value = $objName->viewResource();
 										for($i=0; $i<count($value); $i++) {
 										?> <option><?php echo $value[$i]; ?></option> <?php
-									}
+										}
 									?>
 								</select>
 							</div>
