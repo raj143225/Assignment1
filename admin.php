@@ -17,15 +17,15 @@
    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
    <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <link href="css/business-casual.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <link href="css/business-casual.css" rel="stylesheet">
 </ehad>
 <body>
     <div class="brand">Mindfire Solutions</div>
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -69,7 +69,15 @@
                         {
                     ?>
                     <li>
-                        <a href="allusers.php">Users</a>
+                        <a href="role.php">Roles</a>
+
+                    </li>
+                    <li>
+                        <a href="adminmanage.php">Manage</a>
+
+                    </li>
+                    <li>
+                        <a href="privilages.php">Privileges</a>
 
                     </li>
                      <li>
@@ -91,12 +99,10 @@
                  ?>   
             </div>
             <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
     </nav>
 <div id="agrid" >
 <?php
-if($_SESSION['id']){
+if($_SESSION['id'] && $_SESSION['admin']){
 ?>
 
 	<table id="list_records"></table>

@@ -101,7 +101,7 @@ if(isset($_POST["update"])) {
 		img='$img_var' WHERE id='$id'";
 		if (mysqli_query($connection, $q)) {		
 			$_SESSION["succ"] = "Profile updated successfully";
-			//header("Location:detail.php");
+			header("Location:detail.php");
 		} 
 		else {
 			?><div class = "colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php

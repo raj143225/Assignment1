@@ -11,13 +11,13 @@ require 'dbinfo.php';
 	}
 	else {
 		$password = md5($password);
-		$query1 = "SELECT id,admin FROM reg where user_name='$username' AND password='$password' And activation='1'";
+		$query1 = "SELECT id,admin,first_name FROM reg where user_name='$username' AND password='$password' And activation='1'";
 		$result = mysqli_query($connection, $query1);
 		$rows = mysqli_fetch_assoc($result);
 		if($rows['id']) {
 			$_SESSION["id"] = $rows["id"];
 			$_SESSION["admin"] = $rows["admin"];
-			$_SESSION["username"] = $username;
+			$_SESSION["username"] = $rows["first_name"];
 			//header("Location: detail.php");
 		}
 		else {

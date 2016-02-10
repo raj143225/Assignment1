@@ -28,7 +28,7 @@
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+        
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -51,7 +51,7 @@
                         <a href="login.php">LogIn</a>
                     </li>
                     <li>
-                        <a href="form.php">Register</a>
+                        <a href="index.php">Register</a>
                     </li><?php } ?>
                     
                      <?php
@@ -73,7 +73,15 @@
                         {
                     ?>
                     <li>
-                        <a href="allusers.php">Users</a>
+                        <a href="role.php">Roles</a>
+
+                    </li>
+                    <li>
+                        <a href="adminmanage.php">Manage</a>
+
+                    </li>
+                    <li>
+                        <a href="privilages.php">Privileges</a>
 
                     </li>
                      <li>
@@ -95,7 +103,7 @@
                  ?>   
             </div>
             <!-- /.navbar-collapse -->
-        </div>
+       
         <!-- /.container -->
     </nav>
 <div class="container">

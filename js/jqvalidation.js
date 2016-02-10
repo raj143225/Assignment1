@@ -94,7 +94,7 @@ else{
                 },
                 success: function( response ) {
                 	if(response.id && response.username && response.admin==1){
-                  		window.location.replace('allusers.php');
+                  		window.location.replace('role.php');
                   	}
                   	else if(response.id && response.username)
                   	{

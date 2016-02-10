@@ -1,6 +1,13 @@
 <?php
 	require 'dbinfo.php';
 	class All_operaions {
+		/**
+		 * It is method that retrives the all the roles from the user_types table
+		 *
+		 * 
+		 * 
+		 * @return array of values 
+		 */
 		public function viewRoles() {
 			require 'dbinfo.php';
 			$query = "SELECT type FROM user_types";
@@ -17,6 +24,13 @@
 			return false;
 			//return "kokok";
 		}
+		/**
+		 * It is method adds a new type in the user_types table
+		 *
+		 * @param string $type role name
+		 * 
+		 * @return boolean
+		 */
 		public function addRole($type) {
 			require 'dbinfo.php';
 			$query="INSERT INTO user_types(type) VALUES('$type')";
@@ -27,6 +41,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method deletes an existing role in the user_types table
+		 *
+		 * @param string $type role name
+		 * 
+		 * @return boolean
+		 */
 		public function deleteRole($type) {
 			require 'dbinfo.php';
 			$query="DELETE FROM user_types WHERE type = '$type'";
@@ -37,6 +58,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method that retrives the all the operation from the operations table
+		 *
+		 * 
+		 * 
+		 * @return array of values 
+		 */
 		public function viewOperation() {
 			require 'dbinfo.php';
 			$query = "SELECT action FROM operations";
@@ -52,6 +80,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method adds a new operation in the operations table
+		 *
+		 * @param string $action operation
+		 * 
+		 * @return boolean
+		 */
 		public function addOperation($action) {
 			require 'dbinfo.php';
 			$query="INSERT INTO operations(action) VALUES('$action')";
@@ -62,6 +97,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method deletes an existing operation in the operations table
+		 *
+		 * @param string $action operation
+		 * 
+		 * @return boolean
+		 */
 		public function deleteOperation($action) {
 			require 'dbinfo.php';
 			$query="DELETE FROM operations WHERE action = '$action'";
@@ -72,6 +114,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method that retrives the all the resources from the resources table
+		 *
+		 * 
+		 * 
+		 * @return array of values 
+		 */
 		public function viewResource() {
 			require 'dbinfo.php';
 			$query = "SELECT name FROM resources";
@@ -87,6 +136,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method adds a new resource in the resources table
+		 *
+		 * @param string $name resource name
+		 * 
+		 * @return boolean
+		 */
 		public function addResource($name) {
 			require 'dbinfo.php';
 			$query="INSERT INTO resources(name) VALUES('$name')";
@@ -97,6 +153,13 @@
 			}
 			return false;
 		}
+		/**
+		 * It is method deletes an existing resource in the resources table
+		 *
+		 * @param string $name resource name
+		 * 
+		 * @return boolean
+		 */
 		public function deleteResource($name) {
 			require 'dbinfo.php';
 			$query="DELETE FROM resources WHERE name = '$name'";
@@ -106,38 +169,6 @@
 				return true;
 			}
 			return false;
-		}
-		public function privilageView($user) {
-			require 'dbinfo.php';
-			$query ="";
-		}
-		/*public function editRole($id,$type) {
-			$query="UPDATE user_types SET type='$type' WHERE id='$id'";
-			$result = mysqli_query($query);
-			if($$row = mysqli_fecth_assoc($result))
-			{
-				return true;
-			}
-			return false;
-		}
-		public function addResource($name) {
-			$query="INSERT INTO resources('name') VALUES('$name')";
-			$result = mysqli_query($query);
-			if($$row = mysqli_fecth_assoc($result))
-			{
-				return true;
-			}
-			return false;
-		}
-		public function editResource($id,$name) {
-			$query="UPDATE resources SET name='$name' WHERE id='$id'";
-			$result = mysqli_query($query);
-			if($$row = mysqli_fecth_assoc($result))
-			{
-				return true;
-			}
-			return false;
-		}*/
-
+		}	
 	}
 ?>
