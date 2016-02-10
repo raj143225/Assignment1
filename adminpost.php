@@ -20,7 +20,7 @@ if ($page > $total_pages) $page=$total_pages;
 $start = $limit*$page - $limit;
 if($start <0) $start = 0; 
 if($search_string && $search_field) {
-	$sql = "SELECT * FROM reg WHERE $search_field= '$search_string' ORDER BY $sidx $sord LIMIT $start , $limit";
+	$sql = "SELECT * FROM reg WHERE $search_field= '$search_string' AND admin = '0' ORDER BY $sidx $sord LIMIT $start , $limit";
 	$resultt = mysqli_query($connection,$sql);
 	$rowss=mysqli_fetch_assoc($resultt);
 	//$responce['valuesss']=$rowss['id'];
@@ -29,7 +29,7 @@ if($search_string && $search_field) {
 	}
 }
 else {
-	$sql = "SELECT * FROM reg ORDER BY $sidx $sord LIMIT $start , $limit"; 
+	$sql = "SELECT * FROM reg WHERE admin = '0'  ORDER BY $sidx $sord LIMIT $start , $limit"; 
 }
 $result = mysqli_query($connection,$sql );
 $i=0;

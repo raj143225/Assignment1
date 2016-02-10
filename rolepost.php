@@ -2,24 +2,27 @@
 require 'dbinfo.php';
 require 'class.php';
 $objName = new All_operaions();
-if($id=$_POST['id']) {
-     $a = array();
+if($_POST['id'] && $_POST['role']) {
+    $id=$_POST['id'];
     $role=$_POST['role'];
+    $a = array();
     $querys="SELECT id FROM user_types where type='$role'";
     $results=mysqli_query($connection, $querys);
     if($rows = mysqli_fetch_assoc($results))
     {
         $type_id=$rows['id'];
+        $a['display']=$type_id;
     }
     
     $update_query="UPDATE reg SET user_type_id = '$type_id' WHERE id='$id'";
     $resultss=mysqli_query($connection, $update_query);   
     if($resultss)
     {
-    	header("Location: role.php");
+        $a['display']='success';
+    	//header("Location: role.php");
     }
     echo json_encode($a);
-}
+}//uodating type of user for the registered user
 if($_POST['add']=="add" && $type=$_POST['type'])
 {
     $result= $objName->addRole($type);

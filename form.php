@@ -56,13 +56,16 @@ if(isset($_POST["submit"])) {
 	validate_max_lengths($fields_max_length);//function call to check max length check all array inputs
 	$fields_min_length = array("username"=>8,"password"=>8,"email"=>8,"pno"=>9);	
 	validate_min_lengths($fields_min_length);//function call to check min length check all array inputs
-	$name_fields_presence = array("username","password","email","first_name","last_name","pno","dob","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob");
+	$name_fields_presence = array("username","password","email","first_name","last_name","pno","employement","employer","street","city","state","zip","fax","street1","city1","state1","zip1","fax1","dob");
 	all_prestnt($name_fields_presence);
 	//function call to check all values are present or not in all array inputs
 	if($check=="") {	
 		$errors["check"] = ucfirst("check") . " needs to done to register ";
 	}
-	//for email varification;
+	if($dob == '0000-00-00')
+	{
+		$errors["email"] = ucfirst("DOB") . "can't be empty";
+	}		//for email varification;
 	$q1="SELECT id FROM reg where email_id='$email'";
 	$res=mysqli_query($connection,$q1);
 	if($rows=mysqli_fetch_assoc($res)) {
@@ -149,7 +152,7 @@ if(isset($_POST["submit"])) {
 		</div>
 		<div class="col-lg-12 well">
 			<div class="row">
-				<form class="form" id="reg_form" action="index.php" method="post"  enctype="multipart/form-data">
+				<form class="form" id="reg_form" action="form.php" method="post"  enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-4 form-group icons">
@@ -158,7 +161,6 @@ if(isset($_POST["submit"])) {
 								<input type="text" placeholder="Username" name="username" id="username" class="form-control" value="<?php echo $username; ?>" >
 								 <?php if($errors["username"]) { ?>
 								<lable class="flab1"><?php echo $errors["username"]; $errors["username"]=null ?></lable><?php }?>
-								<div  id="d1"></div>
 								<div  class="has-success" id="d1d1"></div>
 								<div  id="d1d1d1"></div>
 							</div>
@@ -228,8 +230,6 @@ if(isset($_POST["submit"])) {
 									<span class="glyphicon glyphicon-calendar"></span>
 									<label>Date-Of-Birth</label>
 									<input type="date" class="form-control" name="dob" id="dob" value="<?php echo $dob;?>">
-									<?php if($errors["dob"]) { ?>
-								<lable class="flab1"><?php echo $errors["dob"]; $errors["dob"]=null ?></lable><?php } ?>
 								</div>
 							</div>		
 						</div><!--row  ending-->
