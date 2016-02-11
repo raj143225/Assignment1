@@ -156,3 +156,13 @@ body {
   margin-right:10%;
   margin-top: 5%;
 }
+.button-container {/*for the role update button*/
+  padding-left:16%;
+  padding-top:7%;
+}
+.label-for-name {/*for the role update name label span*/
+  padding-top: 3%;
+}
+.well {
+  background-color: ;
+}

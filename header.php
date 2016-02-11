@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!--for ggole login-->
+    <meta name="google-signin-client_id" content="976421833126-e7e2a3nr7nkimb94qfjcar5e3hq5b6as.apps.googleusercontent.com">
+    <!--for ggole login-->
     <title>MINDFIRE</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +25,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
     <link href="css/business-casual.css" rel="stylesheet">
+    <!--for google login-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <div class="brand">Mindfire Solutions</div>
@@ -44,7 +49,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <?php
-                        if(!$_SESSION['id'])
+                        if((!$_SESSION['id']) || (!$_SESSION['username']))
                         {
                     ?>
                     <li>
@@ -55,7 +60,7 @@
                     </li><?php } ?>
                     
                      <?php
-                        if($_SESSION['id'] && $_SESSION['admin']==0)
+                        if(($_SESSION['id'] && $_SESSION['admin']==0) || $_SESSION['username'])
                         {
                     ?><li>
                         <a href="profile.php">Update</a>
@@ -65,7 +70,7 @@
 
                     </li>
                     <li>
-                        <a href="logout.php">Logout</a>
+                        <a href="logout.php" onclick="signOut();">Logout</a>
                     </li>
                     <?php } ?>
                       <?php
@@ -89,7 +94,7 @@
 
                     </li>
                     <li>
-                        <a href="logout.php">Logout</a>
+                        <a href="logout.php" onclick="FB.logout(function(response){});">Logout</a>
                     </li>
                     <?php } ?>
                 </ul>

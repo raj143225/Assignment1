@@ -2,6 +2,23 @@
 session_start();
 require 'header.php';
 ?>
+<!--<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '487750598076158',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>-->
 <div class="col-lg-12 h1 well">	
 <?php if($_SESSION['not_conf_msg']) { ?>
 <lable class="lab2"><?php echo $_SESSION['not_conf_msg']; $_SESSION['not_conf_msg']=null ?></lable><?php } ?>
@@ -19,6 +36,12 @@ require 'header.php';
 	<div class="row">
 		<form class="form" id="my_form" action="loginpost.php" method="post">
 			<div class="col-sm-12 row">
+			<div>
+					<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+     				</fb:login-button><br /><br />
+			</div>
+			<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="username"><h4><center>Username</h4></center></label>
 					<div class="col-sm-8">
@@ -41,6 +64,7 @@ require 'header.php';
 				</div>
 			</div>
 			<div class="col-sm-12 row">	
+				
 				<div class="form-group col-sm-8 b1 lb">	
 					<center><button type="button" id="log_submit" class="btn btn-lg btn-info" name="submit" value="submit">LogIn</button></center>	
 				</div >		
@@ -52,6 +76,65 @@ require 'header.php';
 		</form> 
 	</div>
 </div>
+<script>
+      
+          function statusChangeCallback(response) {
+               console.log('statusChangeCallback');
+               console.log(response);
+               if (response.status === 'connected') {
+                   var accessToken = response.authResponse.accessToken;
+                   testAPI();
+                } else if (response.status === 'not_authorized') {
+                           document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+                } else {
+                        document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+                }
+           }
+
+          function checkLoginState() {
+               FB.getLoginStatus(function(response) {
+               statusChangeCallback(response);
+               });
+           }
+
+          window.fbAsyncInit = function() {
+               FB.init({
+               appId      : '487750598076158',
+               cookie     : true,
+               xfbml      : true,  
+               version    : 'v2.5' 
+             });
+           };
+
+          (function(d, s, id) {
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) return;
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/sdk.js";
+               fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+           // Here we run a very simple test of the Graph API after login is
+  			// successful.  See statusChangeCallback() for when this call is made.
+			function testAPI() {
+   				//console.log('Welcome!  Fetching your information.... ');
+    			FB.api('/me', function(response) {
+			      //console.log('Successful login for: ' + response.name);
+			      var name=document.getElementById('status').innerHTML ='Thanks for logging in, ' + response.name + '!';
+			      var username = response.name;
+			      if(name) {
+			      		window.location.replace('http://myweb.com/project/Assignment1/detail.php?username=' + username + '');
+			      }
+			    });
+  			}
+      </script>
+      <!--for goole-->
+      
+           <!-- <div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>-->
 <?php
 require 'footer.php';
 ?>
