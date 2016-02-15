@@ -130,7 +130,6 @@ if(isset($_POST["submit"])) {
 						'$check',
 						'$activate')";
 		if (mysqli_query($connection, $q)) {	
-
 			$subject = "Activation mail";
 			$var1 = mymail1($email,$subject,$activate);				
 			$_SESSION['active_msg'] = "Activation link sent to your mail";
@@ -139,9 +138,9 @@ if(isset($_POST["submit"])) {
 		else {
 			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
-	}
+	}//error if block ending
 			
-}
+}//post if block ending
 		?>
 		<div id="ackr"></div>
 		<div class="col-lg-12 h1 well">

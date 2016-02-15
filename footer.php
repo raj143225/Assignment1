@@ -22,13 +22,10 @@
 <!--for login(through ajax call)-->
 <script src="js/ajaxfunction.js?t=" + Math.random()></script>
 <!--for grid view-->
-
-
-
 <script src="http://trirand.com/blog/jqgrid/js/i18n/grid.locale-en.js?t=" + Math.random()></script>
 <script src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js?t=" + Math.random()></script>
 <script src="js/jqgrid.js?t=" + Math.random()></script>
-
+<script src="js/fbsdk.js"></script>
 
 </body>
 </html>

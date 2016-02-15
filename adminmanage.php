@@ -2,9 +2,10 @@
 	require 'header.php';
 	require 'dbinfo.php';
 	require 'class.php';
+	require 'acl.php';
 	session_start();
 	$objName = new All_operaions();
-	if($_SESSION['id'] && $_SESSION['admin']) {
+	if($_SESSION['id']) {
 ?>	
 	<div class="col-lg-12 well">
 		<center><label><h4>Roles<h4></label></center>
@@ -31,7 +32,7 @@
 				</div>
 				<div class="col-sm-12 row">
 					<div class="form-group">
-						<label class="control-label col-sm-4"><center><h6>Add</h6></center></label>
+						<label class="control-label col-sm-4"><center><h6>Add New Role</h6></center></label>
 						<div class="col-sm-4">
 							<input  type="text" name="type" id="type"/>
 						</div>
@@ -68,7 +69,7 @@
 				</div>
 				<div class="col-sm-12 row">
 					<div class="form-group">
-						<label class="control-label col-sm-4"><center><h6>Add</h6></center></label>
+						<label class="control-label col-sm-4"><center><h6>Add new Action</h6></center></label>
 					<div class="col-sm-4">
 						<input  type="text" name="operation" id="operation"/>
 					</div>
@@ -104,7 +105,7 @@
 				</div>
 				<div class="col-sm-12 row">
 					<div class="form-group">
-						<label class="control-label col-sm-4"><center><h6>Add</h6></center></label>
+						<label class="control-label col-sm-4"><center><h6>Add new resource</h6></center></label>
 						<div class="col-sm-4">
 							<input type="text" name="recource" id="resource"/>
 						</div>

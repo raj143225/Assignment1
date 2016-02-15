@@ -142,9 +142,8 @@ if(isset($_POST["submit"])) {
 		else {
 			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
-	}
-			
-}
+	}			
+}//form post if block ending
 		?>
 		<div id="ackr"></div>
 		<div class="col-lg-12 h1 well">

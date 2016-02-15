@@ -55,6 +55,6 @@
 							$response['value'] = $q;
 						}
 					}
-				}
+				}//else if block ending
 				echo json_encode($response);//returning values to the jq grid after certain operation
 ?>

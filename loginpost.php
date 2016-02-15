@@ -11,13 +11,15 @@ require 'dbinfo.php';
 	}
 	else {
 		$password = md5($password);
-		$query1 = "SELECT id,admin,first_name FROM reg where user_name='$username' AND password='$password' And activation='1'";
+		$query1 = "SELECT id,admin,first_name,user_type_id FROM reg where user_name='$username' AND password='$password' And activation='1'";
 		$result = mysqli_query($connection, $query1);
 		$rows = mysqli_fetch_assoc($result);
 		if($rows['id']) {
 			$_SESSION["id"] = $rows["id"];
 			$_SESSION["admin"] = $rows["admin"];
 			$_SESSION["username"] = $rows["first_name"];
+			$_SESSION['role'] = $rows['user_type_id'];
+			$_SESSION['action'] = "view";
 			//header("Location: detail.php");
 		}
 		else {
@@ -30,8 +32,8 @@ require 'dbinfo.php';
 			else {
 				$_SESSION['wrong'] = "Wrong username and password";//If username or password is wrong
 			}
-		}
-	}
+		}//query else block ending
+	}//post values checking else block ending
 	//$response["username"]= $username;
 	echo json_encode($_SESSION);				
 ?>

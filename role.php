@@ -1,12 +1,15 @@
 <?php
 require 'header.php';
 require 'dbinfo.php';
+require 'acl.php';
 session_start();
-if($_SESSION['id'] && $_SESSION['admin']) {
+if($_SESSION['id'] ) {
     //$query="SELECT id,user_name,user_type_id FROM reg WHERE admin='0'";
     $query="SELECT id,first_name,user_type_id FROM reg";
     $result=mysqli_query($connection, $query);?>
-    <div class="col-lg-12 well"><?php
+    <div class="col-lg-12 well">
+    <center><label><h3>All Users</h3></label></center>
+    <?php
     $value = 1;
     while($rows_reg = mysqli_fetch_array($result)) {
         $uniid="id-change-"."$value"."";
@@ -14,9 +17,6 @@ if($_SESSION['id'] && $_SESSION['admin']) {
         ?>
         <form class='table form' action="rolepost.php" method="post" id="form">
             <div  class="row col-sm-12">
-               <!-- <div class="col-sm-4 form-group label-for-name">
-                   <h4><span class="label label-info"><?php// echo $rows_reg['first_name'] ?>:</span></h4> 
-                </div>-->
                 <div id="select-container-<?php echo $value ?>" class="col-sm-6 form-group">
                     <h4><span class="label label-success"><?php echo $rows_reg['first_name'] ?></span></h4> 
                     <select class="form-control <?php echo $unisid; ?>" id="select-name" name="role" >
@@ -37,17 +37,18 @@ if($_SESSION['id'] && $_SESSION['admin']) {
                         ?>
                     </select>
                 </div>
-                <div id="button-container-<?php echo $value ?>" class="col-sm-6 form-group button-container">
+                <div id="button-container-<?php echo $value ?>" class="col-sm-3 form-group button-container">
                     <button  type="button" data-count="<?php echo $value ?>" class="btn btn-sm btn-info role-change-submit" name="submit" value="<?php echo $rows_reg[0];?>">Update</button>
                 </div>
+                <div class="col-sm-3" id="result"></div>
             </div>
         </form>   
         <?php  
         $value++;    
-    }
+    }//while loop ending
         ?> </div>
 <?php
-}
+}//if ending
 else {
         session_destroy();
         header("Location: login.php");

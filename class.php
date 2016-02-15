@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require 'dbinfo.php';
 	class All_operaions {
 		/**
@@ -172,3 +173,12 @@
 		}	
 	}
 ?>
+
+
+
+
+
+
+
+
+

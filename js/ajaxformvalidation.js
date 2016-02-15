@@ -142,7 +142,7 @@ $(document).ready(function(){
           roles: role,
           operation_id: operation_id
         },
-        success: function(response){
+        success: function(response) {
         }
     });   
 }
@@ -153,7 +153,6 @@ $(document).ready(function(){
       //var role_id = $('#input-container-' + countVal).find("input[name='id']").val();
       var role = $('#select-container-' + countVal).find("select[name='role']").val();
       var role_id = $('#button-container-' + countVal).find("button[name='submit']").val();
-      console.log(role_id);
       var requestURL = 'rolepost.php';
       $.ajax({
         method: 'POST',
@@ -165,26 +164,35 @@ $(document).ready(function(){
         },
         success: function( response ) {
           if(response.display){
-            console.log("success");
+            //console.log("success");
         }
       }
     });
   });
 });
+
+/*function colorChange() {
+$("colors").css("color","yellow"); 
+}*/
 /*for google login*/
-function onSignIn(googleUser) {
+/*function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
+  var id = profile.getId();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
-}
+  return false;
+  var name = profile.getName();
+  if(id) {
+     window.location.replace('http://myweb.com/project/Assignment1/detail.php?username=' + name + '');
+  }*/
 /*for sign out*/
-  function signOut() {
+  /*function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
+    return false;
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-  }
-
+  }*/
 
