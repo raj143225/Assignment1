@@ -94,11 +94,10 @@ else{
                 },
                 success: function( response ) {
                 	if(response.id && response.username && response.admin==1){
-                  		window.location.replace('role.php');
+                  		window.location.replace('home.php');
                   	}
-                  	else if(response.id && response.username)
-                  	{
-                  		window.location.replace('detail.php');
+                  	else if(response.id && response.username) {
+                  		window.location.replace('home.php');
                   	}
                   	else{
                   		$("div#ack").html(response.wrong);
@@ -220,3 +219,4 @@ function regular_exp(name,id,reg_exp){
 		return true;
 	}
 }
+//

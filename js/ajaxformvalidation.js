@@ -1,5 +1,5 @@
-    $(document).ready(function(){
-    $('#email').keyup(function(e){
+$(document).ready(function(){
+  $('#email').keyup(function(e){
     var email = $("#email").val();
     var username = $("#username").val();
     $.ajax({
@@ -11,7 +11,6 @@
                   email: email
                   },
               success: function( response ) {
-                 
                    if(response.emailalready){
                       var error = '<div class="alert-danger" role="alert">' +
                       '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
@@ -47,11 +46,13 @@
     });
   });
 });
+//verifing input email is is exist in database or not
 $(document).ready(function(){
 $('#email').keydown(function(e){
          $("div#d3d3d3").html("");
   });
 });
+//for emptying the string
 $(document).ready(function(){
   $('#username').keyup(function(e){
     var email = $("#email").val();
@@ -98,14 +99,16 @@ $(document).ready(function(){
                           $("div#d1d1d1").html(progress_bar);
                       }
                   }
-   });
+    });
   });
 });
+//verifing input username is is exist in database or not
 $(document).ready(function(){
 $('#username').keydown(function(e){
     $("div#d1d1d1").html("");
   });
 });
+//for emptying the string
 $(document).ready(function(){
     $('#role_check').change(function(e){
     var role_id = $("#role_check").val();
@@ -127,12 +130,7 @@ $(document).ready(function(){
     });
   });
 });
-/*function changePrivilege(result,role,resource_id,operation_id) {
-  console.log(result);
-  console.log(role);
-  console.log(resource_id);
-  console.log(operation_id);
- }*/
+//for privilages details
  function changePrivilege(result,role,resource_id,operation_id){   
     $.ajax({
         method: 'POST',
@@ -144,9 +142,57 @@ $(document).ready(function(){
           roles: role,
           operation_id: operation_id
         },
-        success: function(response){
+        success: function(response) {
         }
     });   
 }
+//updating privileges details when user checked/uncheked
+$(document).ready(function(){
+    $('.role-change-submit').click(function(e){
+      var countVal = $(this).data('count');
+      //var role_id = $('#input-container-' + countVal).find("input[name='id']").val();
+      var role = $('#select-container-' + countVal).find("select[name='role']").val();
+      var role_id = $('#button-container-' + countVal).find("button[name='submit']").val();
+      var requestURL = 'rolepost.php';
+      $.ajax({
+        method: 'POST',
+        url: requestURL,
+        dataType: 'json',
+        data: {
+          role: role,
+          id : role_id
+        },
+        success: function( response ) {
+          if(response.display){
+            //console.log("success");
+        }
+      }
+    });
+  });
+});
 
+/*function colorChange() {
+$("colors").css("color","yellow"); 
+}*/
+/*for google login*/
+/*function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  var id = profile.getId();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+  return false;
+  var name = profile.getName();
+  if(id) {
+     window.location.replace('http://myweb.com/project/Assignment1/detail.php?username=' + name + '');
+  }*/
+/*for sign out*/
+  /*function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    return false;
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }*/
 

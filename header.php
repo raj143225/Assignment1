@@ -9,25 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!--for ggole login-->
+    <meta name="google-signin-client_id" content="976421833126-e7e2a3nr7nkimb94qfjcar5e3hq5b6as.apps.googleusercontent.com">
+    <!--for ggole login-->
     <title>MINDFIRE</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
    <link href="css/styleform.css" rel="stylesheet">
+   <!--theme for JQgrid--> 
    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
    <!--theme for JQgrid-->
    <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css">
-   <!--theme for JQgrid--> 
+   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
     <link href="css/business-casual.css" rel="stylesheet">
+    <!--for google login-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <div class="brand">Mindfire Solutions</div>
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation" id="navigation">
         
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -44,20 +50,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <?php
-                        if(!$_SESSION['id'])
+                        if($_SESSION['id'])
                         {
                     ?>
                     <li>
-                        <a href="login.php">LogIn</a>
+                        <a href="home.php">Home</a>
+
                     </li>
                     <li>
-                        <a href="index.php">Register</a>
-                    </li><?php } ?>
-                    
-                     <?php
-                        if($_SESSION['id'] && $_SESSION['admin']==0)
-                        {
-                    ?><li>
                         <a href="profile.php">Update</a>
                     </li>
                     <li>
@@ -65,15 +65,7 @@
 
                     </li>
                     <li>
-                        <a href="logout.php">Logout</a>
-                    </li>
-                    <?php } ?>
-                      <?php
-                        if($_SESSION['id'] && $_SESSION['admin']==1)
-                        {
-                    ?>
-                    <li>
-                        <a href="role.php">Roles</a>
+                        <a href="role.php">users</a>
 
                     </li>
                     <li>
@@ -88,19 +80,47 @@
                         <a href="admin.php">Grids</a>
 
                     </li>
-                    <li>
-                        <a href="logout.php">Logout</a>
+                     <li>
+                        <a href="event.php">Event</a>
+
                     </li>
-                    <?php } ?>
+                     <li>
+                        <a href="notification.php">Info</a>
+
+                    </li>
+                     <li>
+                        <a href="logout.php" onclick="signOut();FB.logout(function(response) {});">Logout</a>
+                    </li>
+                <?php   } 
+                        else {
+                ?>
+                    <li>
+                        <a href="login.php">LogIn</a>
+                    </li>
+                    <li>
+                        <a href="index.php">Register</a>
+                    </li> 
+                <?php  
+                        } 
+                ?>
                 </ul>
                 <?php
-                    if($_SESSION['id'])
+                    if($_SESSION['id'] || $_SESSION['username'])
                     {
                 ?>
                 <div class="namee">Welcome <?php echo $_SESSION['username']; ?></div>
                  <?php
                     }
-                 ?>   
+                ?> 
+                <?php
+                    if($_SESSION['admin'])
+                    {
+                ?>
+                <div></div>
+                 <?php
+                    }
+                ?>  
+
             </div>
             <!-- /.navbar-collapse -->
        

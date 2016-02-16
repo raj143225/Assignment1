@@ -2,7 +2,10 @@
 session_start();
 require 'header.php';
 require 'dbinfo.php';
-if($_SESSION['id']) {
+if(isset($_GET['username'])) {
+	$_SESSION['username'] = $_GET['username'];
+}
+if($_SESSION['id'] || $_GET['username']) {
 	$id=$_SESSION['id'];
 	$query1="SELECT * FROM reg WHERE id='$id'";
 	$result=mysqli_query($connection, $query1);

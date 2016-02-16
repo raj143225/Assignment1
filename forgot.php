@@ -23,7 +23,7 @@ if(isset($_POST['send'])) {
 				$_SESSION['wrong_email'] = "Somthing Wrong"; 
 			}
 		}
-	}
+	}//isset if block ending
 	else {
 		if($email == "") {
 			$_SESSION['blank_email'] = "email can't be blank";
@@ -32,7 +32,7 @@ if(isset($_POST['send'])) {
 			$_SESSION['blank_passs'] = "Password can't be blank";
 		} 
 	}
-}
+}//post if block ending
 ?>
 <h1 class="well">Forgot Password</h1>
 <div class="col-lg-12 well">

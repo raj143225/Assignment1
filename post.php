@@ -136,6 +136,6 @@ if(isset($_POST["submit"])) {
 		else {
 			?><div class="colo"><?php echo "Error: " . $q . "<br>" . mysqli_error($connection); ?></div><?php
 		}
-	}	
-}
+	}//error if block ending	
+}// session if block ending
 ?>

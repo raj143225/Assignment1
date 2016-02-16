@@ -1,5 +1,6 @@
 <?php
 	session_start();
+    require 'acl.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@
     <div class="brand">Mindfire Solutions</div>
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation" id="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -39,21 +40,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <?php
-                        if(!$_SESSION['id'])
+                  <?php
+                        if($_SESSION['id'])
                         {
                     ?>
                     <li>
-                        <a href="login.php">LogIn</a>
+                        <a href="home.php">Home</a>
+
                     </li>
                     <li>
-                        <a href="form.php">Register</a>
-                    </li><?php } ?>
-                    
-                     <?php
-                        if($_SESSION['id'] && $_SESSION['admin']==0)
-                        {
-                    ?><li>
                         <a href="profile.php">Update</a>
                     </li>
                     <li>
@@ -61,19 +56,11 @@
 
                     </li>
                     <li>
-                        <a href="logout.php">Logout</a>
-                    </li>
-                    <?php } ?>
-                      <?php
-                        if($_SESSION['id'] && $_SESSION['admin']==1)
-                        {
-                    ?>
-                    <li>
-                        <a href="role.php">Roles</a>
+                        <a href="role.php">users</a>
 
                     </li>
                     <li>
-                        <a href="adminmanage.php">Manage</a>
+                        <a href="adminmanage.php?action=<?php echo $_SESSION['action'];?>">Manage</a>
 
                     </li>
                     <li>
@@ -84,13 +71,32 @@
                         <a href="admin.php">Grids</a>
 
                     </li>
-                    <li>
-                        <a href="logout.php">Logout</a>
+                     <li>
+                        <a href="event.php">Event</a>
+
                     </li>
-                    <?php } ?>
+                     <li>
+                        <a href="notification.php">Info</a>
+
+                    </li>
+                     <li>
+                        <a href="logout.php" onclick="signOut();FB.logout(function(response) {});">Logout</a>
+                    </li>
+                <?php   } 
+                        else {
+                ?>
+                    <li>
+                        <a href="login.php">LogIn</a>
+                    </li>
+                    <li>
+                        <a href="index.php">Register</a>
+                    </li> 
+                <?php  
+                        } 
+                ?>
                 </ul>
                 <?php
-                    if($_SESSION['id'])
+                    if($_SESSION['id'] || $_SESSION['username'])
                     {
                 ?>
                 <div class="namee">Welcome <?php echo $_SESSION['username']; ?></div>
@@ -102,12 +108,11 @@
     </nav>
 <div id="agrid" >
 <?php
-if($_SESSION['id'] && $_SESSION['admin']){
+if($_SESSION['id']) {
+    $_SESSION['not_required'] = "no container here";
 ?>
-
 	<table id="list_records"></table>
 	<div id="perpage"></div><br>
-
 <?php
 }
 else{
