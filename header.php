@@ -34,7 +34,6 @@
     <div class="address-bar">MANCHESHWAR | BHUBANESHWAR | ORISSA</div>
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation" id="navigation">
-        
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -109,6 +108,12 @@
                     {
                 ?>
                 <div class="namee">Welcome <?php echo $_SESSION['username']; ?></div>
+                <div class='date_display'>
+                    <?php
+                    date_default_timezone_set($_SESSION['timezone']);
+                    echo date("d F Y h:i:s A");
+                    ?>
+                </div>
                  <?php
                     }
                 ?> 

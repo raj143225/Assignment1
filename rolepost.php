@@ -4,6 +4,8 @@ require 'class.php';
 session_start();
 $objName = new All_operaions();
 if($_POST['id'] && $_POST['role']) {
+   /* $_SESSION['action'] = 'add';
+    require 'acl.php';*/
     $id = trim($_POST['id']);
     $role = trim($_POST['role']);
     $a = array();

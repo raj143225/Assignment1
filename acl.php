@@ -22,6 +22,7 @@ class Acl {
             $privilegedInfo['resources'][$row['resName']]                    = true;
             $privilegedInfo['operations'][$row['resName'].'-'.$row['oName']] = true;
         }
+         $_SESSION['p'] = $privilegedInfo;
         return $privilegedInfo;
     }//end getRoleResourcePrivilege()
 }//end class

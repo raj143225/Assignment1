@@ -2,23 +2,6 @@
 session_start();
 require 'header.php';
 ?>
-<!--<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '487750598076158',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>-->
 <div class="col-lg-12 h1 well">	
 <?php if($_SESSION['not_conf_msg']) { ?>
 <lable class="lab2"><?php echo $_SESSION['not_conf_msg']; $_SESSION['not_conf_msg']=null ?></lable><?php } ?>
@@ -36,7 +19,7 @@ require 'header.php';
 	<div class="row">
 		<form class="form" id="my_form" action="loginpost.php" method="post">
 			<div class="col-sm-12 row">
-		<!--	<div>
+			<!--<div>
 					<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
      				</fb:login-button><br /><br />
 			</div>

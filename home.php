@@ -6,6 +6,7 @@
 <?php
 		unset($_SESSION['acl_message']);
 		$_SESSION['action'] = 'view';
+		print_r($_SESSION['p']);
 ?>
 </div>
 <?php

@@ -30,6 +30,8 @@ if(isset($_POST["submit"])) {
 	$fax1 = trim($_POST["fax1"]);
 	$comment = stripslashes(trim($_POST["text1"]));
 	$check = trim($_POST["check"]);
+	$twitter = trim($_POST["twitter"]);
+	$timezone = trim($_POST["timezone"]);
 	//POST values
 	$target_dir = img_path;
 	//image pat where to store and retrive
@@ -102,6 +104,8 @@ if(isset($_POST["submit"])) {
 						dob, 
 						img, 
 						check1,
+						timezone,
+						twitter_name,
 						act_com)                
 				VALUES ('$username',
 						'$password', 
@@ -128,6 +132,8 @@ if(isset($_POST["submit"])) {
 						'$dob', 
 						'$img_var', 
 						'$check',
+						'$timezone',
+						'$twitter',
 						'$activate')";
 		if (mysqli_query($connection, $q)) {	
 			$subject = "Activation mail";
@@ -343,39 +349,58 @@ if(isset($_POST["submit"])) {
 									<div id="d16"></div>
 								</div>
 
-							</div>
-						</div><!--row 3 ending-->
-						<div class="row col-sm-12">
-							<div class="form-group col-sm-6">
-								<span class="glyphicon glyphicon-picture"></span>
+                            </div>                         
+                        </div><!--row 3ending-->
+                      	<div class="row col-sm-12">
+                   			<div class="form-group col-sm-6">                                 
+	                   			<span class="glyphicon glyphicon-picture"></span>
 								<label for="upload">Upload Image:</label>
 								<input type='file' name="img1" onchange="readURL(this)" />
 								<img id="blah" src="<?php echo $img;?>" alt="your image" />-
-								<?php if($errors["img"]) { ?>
-									<lable class="flab1"><?php echo "<br/>" . $errors["img"]; $errors["img"]=null ?></lable><?php } ?>
-							</div>
-							<div class="form-group col-sm-5 c1">
+								<?php if($errors["img"]) { ?>                                     <lable
+								class="flab1"><?php echo "<br/>" . $errors["img"]; $errors["img"]=null
+								?></lable><?php } ?>                            
+							 </div>
+							<div class="form-group col-sm-5 c1">                                 
 								<span class="glyphicon glyphicon-pencil"></span>
 								<label for="comment">Comment:</label>
-								<textarea class="form-control" rows="5" id="comment" name="text1" value="<?php echo $comment;?>"></textarea>
-								<?php if($errors["text1"]) { ?>
-								<lable class="flab1"><?php echo $errors["text1"]; $errors["text1"]=null ?></lable><?php } ?>
+								<textarea class="form-control" rows="5" id="comment" name="text1" value="<?php
+								echo $comment;?>"></textarea>                                 <?php
+								if($errors["text1"]) { ?>                                 <lable
+								class="flab1"><?php echo $errors["text1"]; $errors["text1"]=null
+								?></lable><?php } ?>                                 
 								<div id="d17"></div>
-							</div>
+							</div>                         
 						</div><!--row 4 ending-->
-						<div class="row col-sm-12">
-							<div class="form-group col-sm-1">
-								<input  type="checkbox" class="form-control" id="check" name="check"> 
+						<div class='row'>
+							<div class="col-sm-6 form-group">
+								<label>TimeZone</label>                                 
+                            	<select class="form-control timezone" name='timezone' id='timezone'>
+    								<option>America/Anguilla</option>
+    								<option>Asia/Kolkata</option>
+    								<option>Europe/Belfast</option>
+    								<option>Antarctica/Vostok</option>                                 
+                            	</select>
 							</div>
-							<div class="con">
-								<label >
-									Check me if you agree terms and conditions
-								</label>
-								<?php if($errors["check"]) { ?>
-										<lable class="flab1"><?php echo "<br/>" . $errors["check"]; $errors["check"]=null ?></lable><?php } ?>
+							<div class="col-sm-6 form-group">
+								<label>tweeter Screen Name</label>        
+								<input type="text" placeholder="Screen Name" name="twitter" id="twitter" class="form-control" value="<?php echo $twitter; ?>" >
 							</div>
+						</div>                   
+						<div class="row col-sm-12">                             
+							<div class="form-group	col-sm-1">
+		                         <input  type="checkbox" class="form-control" id="check" name="check">                             
+		                    </div>
+							<div class="con col-sm-6">     
+	                            <label >Check me if you agree terms and conditions</label>
+	                            <?php if($errors["check"]) { ?>
+								<lable class="flab1"><?php echo "<br/>" . $errors["check"];
+								$errors["check"]=null ?></lable><?php } ?>                             
+							</div>
+						</div>                             
+                 		<div>
+							<center><button type="submit" name="submit" id="reg_submit" value="submit" class="btn btn-lg btn-info">Submit</button></center>					
 						</div>
-					<center><button type="submit" name="submit" id="reg_submit" value="submit" class="btn btn-lg btn-info">Submit</button></center>					
 				</div>
 			</form> 
 		</div>

@@ -11,7 +11,7 @@ require 'dbinfo.php';
 	}
 	else {
 		$password = md5($password);
-		$query1 = "SELECT id,admin,first_name,user_type_id FROM reg where user_name='$username' AND password='$password' And activation='1'";
+		$query1 = "SELECT id,admin,first_name,user_type_id,timezone FROM reg where user_name='$username' AND password='$password' And activation='1'";
 		$result = mysqli_query($connection, $query1);
 		$rows = mysqli_fetch_assoc($result);
 		if($rows['id']) {
@@ -19,6 +19,7 @@ require 'dbinfo.php';
 			$_SESSION["admin"] = $rows["admin"];
 			$_SESSION["username"] = $rows["first_name"];
 			$_SESSION['role'] = $rows['user_type_id'];
+			$_SESSION['timezone'] = $rows['timezone'];
 			$_SESSION['action'] = "view";
 			//header("Location: detail.php");
 		}
