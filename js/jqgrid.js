@@ -7,7 +7,7 @@
                         "Middle Name",
                         "Date of Birth","Email_id",
                         "Employement","Employer","Gender",
-                        "Marital-Status","Phone no","Manage"
+                        "Marital-Status","Phone no","Manage","tweets"
                         ],
             colModel: [
                 { name: "id",width:70},
@@ -27,7 +27,8 @@
                         editOptions: {},
                         addOptions: {},
                         delOptions: {}
-                    }   } 
+                    }   }, 
+                { name: "act" ,index:"act",align:"center", width:70}
             ],
             rowNum: 10,
             rowList: [10,20],
@@ -56,7 +57,50 @@
                         params: false
             }],
              pager: "#perpage",
+             gridComplete: function(){
+                var ids = $("#list_records").jqGrid('getDataIDs');
+                for(var i=0;i < ids.length;i++){
+                    var cl = ids[i];
+                    be = '<input id ="tweet" type="button" onclick="a()" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="View" />'; 
+                    $("#list_records").jqGrid('setRowData',ids[i],{act:be});
+                }
+            }
+
         });  
             $('#list_records').jqGrid('filterToolbar');
             $('#list_records').navGrid('#perpage', { edit: true, add: false, del: true, search: true, refresh: true, view: false, position: "left", cloneToTop: true });
 });
+
+ function a()
+{
+    var id = $("#list_records").jqGrid('getGridParam','selrow'); 
+
+    if (id) 
+    {
+
+        var ret = $("#list_records").jqGrid('getRowData',id);
+        user_id=ret.id;
+        //alert(user_name);
+        $.ajax({
+            method: 'POST',
+            url: 'twitter.php',
+            dataType: 'json',
+            data: {
+              user_id: user_id
+            },
+            success: function(response) {
+                $(document).ready(function(){
+                    $('#modal-body').html(response.res);
+                });     
+            }
+        });   
+        
+    } 
+    else
+    { 
+        alert("Please select row");
+        $(document).ready(function(){
+            $()
+        });
+    }
+}

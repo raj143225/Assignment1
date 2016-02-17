@@ -88,6 +88,7 @@ body {
 .con {
   padding-top: 1%;
   padding-left: 0%;
+  float: left;
 }
 .a1 {
 
@@ -118,6 +119,7 @@ body {
 .namee {
 
   color: black;
+  float: left;
   padding-left:40%; 
   display: block;
   font-weight: bold;
@@ -183,4 +185,7 @@ body {
 #navigation li a:active {
     background: red;
     color: #ffffff;
+}
+.date_display {
+  margin-top: 17px;
 }
